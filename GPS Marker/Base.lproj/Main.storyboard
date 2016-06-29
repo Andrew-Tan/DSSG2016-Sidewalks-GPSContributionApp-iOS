@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GPS_Marker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,101 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current GPS Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL0-7H-M3d">
+                                <rect key="frame" x="236" y="329" width="129" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESk-2V-5Hf">
+                                <rect key="frame" x="262" y="358" width="76" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVE-Gt-FUk">
+                                <rect key="frame" x="269" y="387" width="62" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EB0-oU-t7C">
+                                <rect key="frame" x="20" y="28" width="560" height="278"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="63y-xG-VV2">
+                                <rect key="frame" x="203" y="550" width="195" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlo-4y-GL0">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="30"/>
+                                        <state key="normal" title="Button 1"/>
+                                        <connections>
+                                            <action selector="getLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="He7-og-Ymr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlN-kd-UrV">
+                                        <rect key="frame" x="67" y="0.0" width="59" height="30"/>
+                                        <state key="normal" title="Button 2"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojP-gy-QHI">
+                                        <rect key="frame" x="136" y="0.0" width="59" height="30"/>
+                                        <state key="normal" title="Button 3"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPS Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fro-Ax-yH9">
+                                <rect key="frame" x="246" y="440" width="109" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horizontal: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sI5-UO-Nqf">
+                                <rect key="frame" x="242" y="469" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vertical: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgh-Zt-fWM">
+                                <rect key="frame" x="252" y="498" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="63y-xG-VV2" secondAttribute="bottom" constant="20" symbolic="YES" id="0fF-z2-Pqf"/>
+                            <constraint firstItem="Fro-Ax-yH9" firstAttribute="centerX" secondItem="sI5-UO-Nqf" secondAttribute="centerX" id="7T0-b4-DAf"/>
+                            <constraint firstItem="Fro-Ax-yH9" firstAttribute="top" secondItem="DVE-Gt-FUk" secondAttribute="bottom" constant="32" id="GSs-BR-AiI"/>
+                            <constraint firstItem="EB0-oU-t7C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="INE-xP-8lO"/>
+                            <constraint firstItem="zgh-Zt-fWM" firstAttribute="top" secondItem="sI5-UO-Nqf" secondAttribute="bottom" constant="8" symbolic="YES" id="Iqa-Ay-zgj"/>
+                            <constraint firstItem="ESk-2V-5Hf" firstAttribute="centerX" secondItem="DVE-Gt-FUk" secondAttribute="centerX" id="Tik-cj-1oH"/>
+                            <constraint firstItem="DVE-Gt-FUk" firstAttribute="top" secondItem="ESk-2V-5Hf" secondAttribute="bottom" constant="8" symbolic="YES" id="XFe-n9-0vd"/>
+                            <constraint firstItem="ESk-2V-5Hf" firstAttribute="top" secondItem="mL0-7H-M3d" secondAttribute="bottom" constant="8" symbolic="YES" id="aMp-y2-PES"/>
+                            <constraint firstItem="63y-xG-VV2" firstAttribute="top" secondItem="zgh-Zt-fWM" secondAttribute="bottom" constant="31" id="beN-oh-WA6"/>
+                            <constraint firstItem="sI5-UO-Nqf" firstAttribute="centerX" secondItem="zgh-Zt-fWM" secondAttribute="centerX" id="ce8-8d-Dhd"/>
+                            <constraint firstItem="zgh-Zt-fWM" firstAttribute="centerX" secondItem="63y-xG-VV2" secondAttribute="centerX" id="gXp-Y0-H6s"/>
+                            <constraint firstItem="sI5-UO-Nqf" firstAttribute="top" secondItem="Fro-Ax-yH9" secondAttribute="bottom" constant="8" symbolic="YES" id="gZ2-Db-Xnh"/>
+                            <constraint firstItem="EB0-oU-t7C" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="iXR-Zn-Bxe"/>
+                            <constraint firstItem="mL0-7H-M3d" firstAttribute="top" secondItem="EB0-oU-t7C" secondAttribute="bottom" constant="23" id="l0D-tZ-976"/>
+                            <constraint firstItem="DVE-Gt-FUk" firstAttribute="centerX" secondItem="Fro-Ax-yH9" secondAttribute="centerX" id="luy-91-QZP"/>
+                            <constraint firstItem="EB0-oU-t7C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="nwA-Nl-f0L"/>
+                            <constraint firstItem="EB0-oU-t7C" firstAttribute="centerX" secondItem="mL0-7H-M3d" secondAttribute="centerX" id="t12-rJ-U25"/>
+                            <constraint firstItem="mL0-7H-M3d" firstAttribute="centerX" secondItem="ESk-2V-5Hf" secondAttribute="centerX" id="zcJ-Gx-vJE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonStack" destination="63y-xG-VV2" id="9Mc-XA-cpK"/>
+                        <outlet property="horizontalAccuracy" destination="sI5-UO-Nqf" id="74v-wk-CJF"/>
+                        <outlet property="latLabel" destination="DVE-Gt-FUk" id="PGm-hu-UvN"/>
+                        <outlet property="longLabel" destination="ESk-2V-5Hf" id="PS8-Yf-M86"/>
+                        <outlet property="mapView" destination="EB0-oU-t7C" id="Wbk-yn-vtG"/>
+                        <outlet property="verticalAccuracy" destination="zgh-Zt-fWM" id="KzK-Aw-ZvW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="369" y="344"/>
         </scene>
     </scenes>
 </document>
