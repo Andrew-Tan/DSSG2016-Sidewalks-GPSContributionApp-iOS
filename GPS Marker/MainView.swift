@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class MainView: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var buttonStack: UIStackView!
@@ -25,7 +25,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Location Manager
+        // Location manager configuration
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
     }
@@ -35,10 +35,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+        Handle different cases when location authorization status changed
+     
+        - parameter manager: the CLLocationManager
+        - parameter status: the current status of location authorization
+     */
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
         switch status {
-        case .AuthorizedAlways, .AuthorizedWhenInUse:
+            case .AuthorizedAlways, .AuthorizedWhenInUse:
             buttonStack.hidden = false
             mapView.userTrackingMode = .Follow
         case .NotDetermined:
@@ -50,7 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             mapView.userTrackingMode = .None
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
-                message: "In order to record location informaition you reported, please open this app's settings and set location access to 'Always'.",
+                message: "In order to record location information you reported, please open this app's settings and set location access to 'Always'.",
                 preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -67,31 +73,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    @IBAction func getLocation(sender: UIButton) {
-        let currentLocation = locationManager.location
-        
-        longLabel.text = "Long: \(currentLocation!.coordinate.longitude)"
-        latLabel.text = "Lat: \(currentLocation!.coordinate.latitude)"
-        horizontalAccuracy.text = "Horizontal: \(currentLocation!.horizontalAccuracy) meters"
-        verticalAccuracy.text = "Vertical: \(currentLocation!.verticalAccuracy) meters"
-        
-        // Set Mapview
-        // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
-        let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: currentLocation!.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
-        if currentDroppedPin != nil {
-            mapView.removeAnnotation(currentDroppedPin!)
-            currentDroppedPin = nil
+    /**
+        Handle button clicked action
+        - parameter sender: the button object who triggered this action
+    */
+    @IBAction func buttonClicked(sender: UIButton) {
+        if sender.tag == 0 {
+            performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
         }
-        
-        currentDroppedPin = MKPointAnnotation()
-        currentDroppedPin!.coordinate = currentLocation!.coordinate
-        currentDroppedPin!.title = "Button 1 Report Location"
-        // currentDroppedPin!.subtitle = "London"
-        mapView.addAnnotation(currentDroppedPin!)
     }
+    
 }
 

@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADC1D24347E00661533 /* AppDelegate.swift */; };
-		89A2BADF1D24347E00661533 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADE1D24347E00661533 /* ViewController.swift */; };
+		89A2BADF1D24347E00661533 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADE1D24347E00661533 /* MainView.swift */; };
 		89A2BAE21D24347E00661533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A2BAE01D24347E00661533 /* Main.storyboard */; };
 		89A2BAE41D24347E00661533 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89A2BAE31D24347E00661533 /* Assets.xcassets */; };
 		89A2BAE71D24347E00661533 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A2BAE51D24347E00661533 /* LaunchScreen.storyboard */; };
 		89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */; };
+		89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
+		89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +30,7 @@
 /* Begin PBXFileReference section */
 		89A2BAD91D24347E00661533 /* GPS Marker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Marker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		89A2BADE1D24347E00661533 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89A2BADE1D24347E00661533 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		89A2BAE11D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89A2BAE31D24347E00661533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89A2BAE61D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +38,7 @@
 		89A2BAED1D24347E00661533 /* GPS MarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS MarkerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_MarkerTests.swift; sourceTree = "<group>"; };
 		89A2BAF31D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				89A2BADC1D24347E00661533 /* AppDelegate.swift */,
-				89A2BADE1D24347E00661533 /* ViewController.swift */,
+				89A2BADE1D24347E00661533 /* MainView.swift */,
+				89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */,
 				89A2BAE01D24347E00661533 /* Main.storyboard */,
 				89A2BAE31D24347E00661533 /* Assets.xcassets */,
 				89A2BAE51D24347E00661533 /* LaunchScreen.storyboard */,
@@ -198,7 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89A2BADF1D24347E00661533 /* ViewController.swift in Sources */,
+				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
+				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */,
+				89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
