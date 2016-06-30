@@ -11,14 +11,19 @@ import CoreLocation
 import MapKit
 
 class MainView: UIViewController, CLLocationManagerDelegate {
-    
+    // Map view
     @IBOutlet weak var mapView: MKMapView!
+    
+    // Button stack
     @IBOutlet weak var buttonStack: UIStackView!
+    
+    // Label
     @IBOutlet weak var longLabel: UILabel!
     @IBOutlet weak var latLabel: UILabel!
     @IBOutlet weak var horizontalAccuracy: UILabel!
     @IBOutlet weak var verticalAccuracy: UILabel!
     
+    // Location Service
     let locationManager = CLLocationManager()
     var currentDroppedPin : MKPointAnnotation?
     
@@ -30,21 +35,30 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    // MARK:- Action
     
     /**
-        Handle different cases when location authorization status changed
+        Handle button clicked action
+        - parameter sender: the button object who triggered this action
+    */
+    @IBAction func buttonClicked(sender: UIButton) {
+        if sender.tag == 0 {
+            performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
+        }
+    }
+    
+    //MARK:- CLLocationManagerDelegate methods
+    
+    /**
+     Handle different cases when location authorization status changed
      
-        - parameter manager: the CLLocationManager
-        - parameter status: the current status of location authorization
+     - parameter manager: the CLLocationManager
+     - parameter status: the current status of location authorization
      */
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         
         switch status {
-            case .AuthorizedAlways, .AuthorizedWhenInUse:
+        case .AuthorizedAlways, .AuthorizedWhenInUse:
             buttonStack.hidden = false
             mapView.userTrackingMode = .Follow
         case .NotDetermined:
@@ -72,16 +86,5 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
-    
-    /**
-        Handle button clicked action
-        - parameter sender: the button object who triggered this action
-    */
-    @IBAction func buttonClicked(sender: UIButton) {
-        if sender.tag == 0 {
-            performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
-        }
-    }
-    
 }
 

@@ -15,6 +15,7 @@
 		89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */; };
 		89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
 		89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
+		89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB051D25A08100661533 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_MarkerTests.swift; sourceTree = "<group>"; };
 		89A2BAF31D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
+		89A2BB051D25A08100661533 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				89A2BADC1D24347E00661533 /* AppDelegate.swift */,
 				89A2BADE1D24347E00661533 /* MainView.swift */,
 				89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */,
+				89A2BB051D25A08100661533 /* SwiftyJSON.swift */,
 				89A2BAE01D24347E00661533 /* Main.storyboard */,
 				89A2BAE31D24347E00661533 /* Assets.xcassets */,
 				89A2BAE51D24347E00661533 /* LaunchScreen.storyboard */,
@@ -205,6 +208,7 @@
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
+				89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

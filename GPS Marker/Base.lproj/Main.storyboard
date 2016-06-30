@@ -152,10 +152,10 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="421"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbQ-D0-fjv">
-                                <rect key="frame" x="20" y="488" width="159" height="42"/>
+                                <rect key="frame" x="11" y="488" width="122" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="hKy-Xn-xU7"/>
-                                    <constraint firstAttribute="width" constant="159" id="yTy-KN-qQM"/>
+                                    <constraint firstAttribute="width" constant="122" id="6yF-fh-xdA"/>
+                                    <constraint firstAttribute="height" constant="42" id="HzQ-U3-flw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Sidewalk Start"/>
@@ -163,30 +163,21 @@
                                     <action selector="sidewalkRecordStart" destination="WNx-Pj-A0W" eventType="touchUpInside" id="Q4J-tO-uwq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DN2-MQ-doQ">
-                                <rect key="frame" x="20" y="538" width="150" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="b9Q-hb-qNB"/>
-                                    <constraint firstAttribute="height" constant="42" id="v1r-z7-SdS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Sidewalk End"/>
-                                <connections>
-                                    <action selector="sidewalkRecordEnd" destination="WNx-Pj-A0W" eventType="touchUpInside" id="lgp-mD-62i"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDx-AB-fMx">
                                 <rect key="frame" x="525" y="538" width="55" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="qrt-MI-rIQ"/>
+                                    <constraint firstAttribute="width" constant="55" id="vIy-aN-OB7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveRecording" destination="WNx-Pj-A0W" eventType="touchUpInside" id="aOp-1L-URf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TK5-Ft-3YE">
-                                <rect key="frame" x="502" y="488" width="78" height="42"/>
+                                <rect key="frame" x="518" y="488" width="62" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="78" id="cDm-OB-D3Z"/>
+                                    <constraint firstAttribute="width" constant="62" id="to5-ZM-N2O"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Cancel"/>
@@ -194,25 +185,37 @@
                                     <action selector="cancelRecording" destination="WNx-Pj-A0W" eventType="touchUpInside" id="Wba-G9-535"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DN2-MQ-doQ">
+                                <rect key="frame" x="11" y="538" width="113" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="113" id="YXb-Lc-zw3"/>
+                                    <constraint firstAttribute="height" constant="42" id="aLC-2u-8aF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Sidewalk End"/>
+                                <connections>
+                                    <action selector="sidewalkRecordEnd" destination="WNx-Pj-A0W" eventType="touchUpInside" id="lgp-mD-62i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="top" secondItem="sDx-AB-fMx" secondAttribute="top" id="3ef-rH-XZF"/>
-                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="leading" secondItem="Ybd-Wx-sYz" secondAttribute="leadingMargin" id="48M-yL-xeX"/>
-                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="top" secondItem="zbQ-D0-fjv" secondAttribute="bottom" constant="8" symbolic="YES" id="5IK-0p-elD"/>
-                            <constraint firstAttribute="bottom" secondItem="DN2-MQ-doQ" secondAttribute="bottom" constant="20" symbolic="YES" id="APg-s7-kMt"/>
-                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="top" secondItem="e6b-cc-8yp" secondAttribute="bottom" constant="3" id="DkB-7f-utF"/>
+                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="trailing" secondItem="Ybd-Wx-sYz" secondAttribute="trailingMargin" id="1SV-vg-JFn"/>
+                            <constraint firstAttribute="bottom" secondItem="DN2-MQ-doQ" secondAttribute="bottom" constant="20" symbolic="YES" id="44G-el-A2q"/>
+                            <constraint firstItem="sDx-AB-fMx" firstAttribute="baseline" secondItem="DN2-MQ-doQ" secondAttribute="firstBaseline" id="BTu-XY-RA7"/>
+                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="baseline" secondItem="sDx-AB-fMx" secondAttribute="firstBaseline" id="BzN-lG-BxY"/>
                             <constraint firstItem="e6b-cc-8yp" firstAttribute="leading" secondItem="Ybd-Wx-sYz" secondAttribute="leading" id="F42-W5-wiN"/>
+                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="top" secondItem="zbQ-D0-fjv" secondAttribute="bottom" constant="8" symbolic="YES" id="Gea-25-ZdH"/>
                             <constraint firstItem="e6b-cc-8yp" firstAttribute="top" secondItem="bZL-iE-zyT" secondAttribute="bottom" id="QPI-WX-E3b"/>
-                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="trailing" secondItem="Ybd-Wx-sYz" secondAttribute="trailingMargin" id="SVj-jp-Ume"/>
-                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="leading" secondItem="DN2-MQ-doQ" secondAttribute="leading" id="XpP-JN-kgI"/>
-                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="baseline" secondItem="zbQ-D0-fjv" secondAttribute="firstBaseline" id="ejj-ov-agV"/>
-                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="baseline" secondItem="sDx-AB-fMx" secondAttribute="firstBaseline" id="fhr-Qb-Tqg"/>
-                            <constraint firstItem="sDx-AB-fMx" firstAttribute="baseline" secondItem="DN2-MQ-doQ" secondAttribute="firstBaseline" id="hv0-LW-CTP"/>
-                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="top" secondItem="TK5-Ft-3YE" secondAttribute="top" id="iOk-hF-1IG"/>
+                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="trailing" secondItem="sDx-AB-fMx" secondAttribute="trailing" id="Z9A-cI-fB1"/>
+                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="leading" secondItem="DN2-MQ-doQ" secondAttribute="leading" id="Zjp-eN-nqF"/>
+                            <constraint firstItem="DN2-MQ-doQ" firstAttribute="top" secondItem="sDx-AB-fMx" secondAttribute="top" id="fSi-yO-swd"/>
+                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="top" secondItem="e6b-cc-8yp" secondAttribute="bottom" constant="3" id="h5d-q0-odA"/>
+                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="baseline" secondItem="TK5-Ft-3YE" secondAttribute="firstBaseline" id="kAy-8u-vLf"/>
+                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="baseline" secondItem="zbQ-D0-fjv" secondAttribute="firstBaseline" id="kWS-qN-9sB"/>
+                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="top" secondItem="TK5-Ft-3YE" secondAttribute="top" id="mjd-rG-Hsw"/>
                             <constraint firstAttribute="trailing" secondItem="e6b-cc-8yp" secondAttribute="trailing" id="rDT-Gq-oJT"/>
-                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="baseline" secondItem="TK5-Ft-3YE" secondAttribute="firstBaseline" id="vPK-Zf-l1z"/>
-                            <constraint firstItem="TK5-Ft-3YE" firstAttribute="trailing" secondItem="sDx-AB-fMx" secondAttribute="trailing" id="z0K-2i-INA"/>
+                            <constraint firstItem="zbQ-D0-fjv" firstAttribute="leading" secondItem="Ybd-Wx-sYz" secondAttribute="leadingMargin" constant="-9" id="z3c-3g-Vgy"/>
                         </constraints>
                     </view>
                     <connections>
