@@ -36,8 +36,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="hhW-5y-dfd" userLabel="Accuracy Stack">
+                                <rect key="frame" x="20" y="164" width="197" height="63"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPS Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fro-Ax-yH9">
+                                        <rect key="frame" x="0.0" y="0.0" width="197" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horizontal: Waiting data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sI5-UO-Nqf">
+                                        <rect key="frame" x="0.0" y="21" width="197" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vertical: Waiting data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgh-Zt-fWM">
+                                        <rect key="frame" x="0.0" y="42" width="197" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-kS-8wP">
+                                <rect key="frame" x="496" y="550" width="84" height="30"/>
+                                <state key="normal" title="Clear Cache"/>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aXm-m9-1af"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aui-pV-jDM">
+                                <rect key="frame" x="379" y="550" width="102" height="30"/>
+                                <state key="normal" title="Upload Record"/>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lLj-hi-E8s"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Ad7-r3-qVs" userLabel="Coordinate Stack">
+                                <rect key="frame" x="20" y="72" width="157" height="84"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current GPS Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL0-7H-M3d">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long: Waiting data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESk-2V-5Hf">
+                                        <rect key="frame" x="0.0" y="21" width="157" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat: Waiting data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVE-Gt-FUk">
+                                        <rect key="frame" x="0.0" y="42" width="143" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alt: Waiting data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ig-aE-Hc3">
+                                        <rect key="frame" x="0.0" y="63" width="140" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-Fj-ILi">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="N0m-bI-nwO">
-                                <rect key="frame" x="20" y="335" width="112" height="128"/>
+                                <rect key="frame" x="244" y="411" width="112" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlo-4y-GL0">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
@@ -59,90 +128,31 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EB0-oU-t7C">
-                                <rect key="frame" x="0.0" y="64" width="600" height="263"/>
-                            </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current GPS Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mL0-7H-M3d">
-                                <rect key="frame" x="140" y="335" width="129" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESk-2V-5Hf">
-                                <rect key="frame" x="140" y="364" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lat: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVE-Gt-FUk">
-                                <rect key="frame" x="140" y="393" width="62" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPS Accuracy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fro-Ax-yH9">
-                                <rect key="frame" x="140" y="445" width="109" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horizontal: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sI5-UO-Nqf">
-                                <rect key="frame" x="140" y="474" width="116" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vertical: N/A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgh-Zt-fWM">
-                                <rect key="frame" x="140" y="503" width="96" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-kS-8wP">
-                                <rect key="frame" x="496" y="550" width="84" height="30"/>
-                                <state key="normal" title="Clear Cache"/>
-                                <connections>
-                                    <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aXm-m9-1af"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aui-pV-jDM">
-                                <rect key="frame" x="379" y="550" width="102" height="30"/>
-                                <state key="normal" title="Upload Record"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="zgh-Zt-fWM" firstAttribute="top" secondItem="sI5-UO-Nqf" secondAttribute="bottom" constant="8" symbolic="YES" id="59s-R0-MFG"/>
-                            <constraint firstItem="DVE-Gt-FUk" firstAttribute="top" secondItem="ESk-2V-5Hf" secondAttribute="bottom" constant="8" symbolic="YES" id="5s4-t7-FM9"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="8Sz-Ke-X4Z"/>
-                            <constraint firstItem="aui-pV-jDM" firstAttribute="baseline" secondItem="EOV-kS-8wP" secondAttribute="baseline" id="B0b-RB-eWj"/>
-                            <constraint firstItem="DVE-Gt-FUk" firstAttribute="leading" secondItem="Fro-Ax-yH9" secondAttribute="leading" id="BYY-Zb-wnh"/>
-                            <constraint firstAttribute="trailing" secondItem="EB0-oU-t7C" secondAttribute="trailing" id="GQ2-r7-DYq"/>
-                            <constraint firstItem="ESk-2V-5Hf" firstAttribute="leading" secondItem="DVE-Gt-FUk" secondAttribute="leading" id="IGU-5r-WRX"/>
-                            <constraint firstItem="N0m-bI-nwO" firstAttribute="top" secondItem="EB0-oU-t7C" secondAttribute="bottom" constant="8" symbolic="YES" id="Mh9-Wh-zb2"/>
-                            <constraint firstItem="EB0-oU-t7C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Uut-TN-PiR"/>
-                            <constraint firstItem="EB0-oU-t7C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="WqM-Pg-UhJ"/>
-                            <constraint firstItem="N0m-bI-nwO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="dhG-c6-QQ3"/>
-                            <constraint firstItem="Fro-Ax-yH9" firstAttribute="top" secondItem="DVE-Gt-FUk" secondAttribute="bottom" constant="31" id="do5-9h-s8D"/>
-                            <constraint firstItem="sI5-UO-Nqf" firstAttribute="top" secondItem="Fro-Ax-yH9" secondAttribute="bottom" constant="8" symbolic="YES" id="f4v-Cd-oqR"/>
-                            <constraint firstItem="sI5-UO-Nqf" firstAttribute="leading" secondItem="zgh-Zt-fWM" secondAttribute="leading" id="fk3-Lc-Pqh"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="leading" secondItem="aui-pV-jDM" secondAttribute="trailing" constant="15" id="fzg-7S-Bcj"/>
-                            <constraint firstItem="mL0-7H-M3d" firstAttribute="leading" secondItem="ESk-2V-5Hf" secondAttribute="leading" id="g6f-ZX-lFM"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zgh-Zt-fWM" secondAttribute="bottom" constant="76" id="mFN-47-im1"/>
-                            <constraint firstItem="mL0-7H-M3d" firstAttribute="leading" secondItem="N0m-bI-nwO" secondAttribute="trailing" constant="8" symbolic="YES" id="oFJ-xe-QJd"/>
-                            <constraint firstAttribute="bottom" secondItem="aui-pV-jDM" secondAttribute="bottom" constant="20" symbolic="YES" id="ppl-Nv-8hg"/>
-                            <constraint firstItem="Fro-Ax-yH9" firstAttribute="leading" secondItem="sI5-UO-Nqf" secondAttribute="leading" id="rUF-fp-key"/>
-                            <constraint firstItem="N0m-bI-nwO" firstAttribute="top" secondItem="mL0-7H-M3d" secondAttribute="top" id="vD1-SD-d4N"/>
-                            <constraint firstItem="ESk-2V-5Hf" firstAttribute="top" secondItem="mL0-7H-M3d" secondAttribute="bottom" constant="8" symbolic="YES" id="zsQ-2O-4t9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N0m-bI-nwO" secondAttribute="bottom" constant="61" id="0jN-LW-paV"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1Pg-4d-oll"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="hhW-5y-dfd" secondAttribute="leading" id="4T5-Ac-ogQ"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="5AD-t0-s1f"/>
+                            <constraint firstItem="EOV-kS-8wP" firstAttribute="leading" secondItem="aui-pV-jDM" secondAttribute="trailing" constant="15" id="5H7-X8-NiN"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8k-Nu-jvD"/>
+                            <constraint firstAttribute="bottom" secondItem="aui-pV-jDM" secondAttribute="bottom" constant="20" symbolic="YES" id="SEA-mF-pXN"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="N0m-bI-nwO" secondAttribute="centerX" id="T9O-UH-7Jj"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WWF-FD-Xxg"/>
+                            <constraint firstItem="hhW-5y-dfd" firstAttribute="top" secondItem="Ad7-r3-qVs" secondAttribute="bottom" constant="8" symbolic="YES" id="YCA-E1-ckI"/>
+                            <constraint firstItem="aui-pV-jDM" firstAttribute="baseline" secondItem="EOV-kS-8wP" secondAttribute="baseline" id="YFi-Cr-7p5"/>
+                            <constraint firstItem="EOV-kS-8wP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tVZ-Vi-BpX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QaU-WS-eGh"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="tNg-Fj-ILi" id="5gl-Su-0GA"/>
+                        <outlet property="altLabel" destination="5Ig-aE-Hc3" id="Mq5-ne-izv"/>
                         <outlet property="buttonStack" destination="N0m-bI-nwO" id="l6L-VK-hv4"/>
                         <outlet property="horizontalAccuracy" destination="sI5-UO-Nqf" id="74v-wk-CJF"/>
                         <outlet property="latLabel" destination="DVE-Gt-FUk" id="PGm-hu-UvN"/>
                         <outlet property="longLabel" destination="ESk-2V-5Hf" id="PS8-Yf-M86"/>
-                        <outlet property="mapView" destination="EB0-oU-t7C" id="Wbk-yn-vtG"/>
                         <outlet property="verticalAccuracy" destination="zgh-Zt-fWM" id="KzK-Aw-ZvW"/>
                         <segue destination="WNx-Pj-A0W" kind="show" identifier="sidewalkSceneSegue" id="XgU-Sk-85Q"/>
                     </connections>

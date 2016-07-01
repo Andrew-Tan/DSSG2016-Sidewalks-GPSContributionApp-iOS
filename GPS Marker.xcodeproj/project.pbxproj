@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		891215E61D26D41500940415 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 891215E51D26D41500940415 /* README.md */; };
 		89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADC1D24347E00661533 /* AppDelegate.swift */; };
 		89A2BADF1D24347E00661533 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADE1D24347E00661533 /* MainView.swift */; };
 		89A2BAE21D24347E00661533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A2BAE01D24347E00661533 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		891215E51D26D41500940415 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		89A2BAD91D24347E00661533 /* GPS Marker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Marker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89A2BADE1D24347E00661533 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 		89A2BAD01D24347D00661533 = {
 			isa = PBXGroup;
 			children = (
+				891215E51D26D41500940415 /* README.md */,
 				89A2BADB1D24347E00661533 /* GPS Marker */,
 				89A2BAF01D24347E00661533 /* GPS MarkerTests */,
 				89A2BADA1D24347E00661533 /* Products */,
@@ -207,6 +210,7 @@
 			files = (
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
+				891215E61D26D41500940415 /* README.md in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
 				89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */,
 			);
@@ -340,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
@@ -354,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "GPS Marker/Info.plist";

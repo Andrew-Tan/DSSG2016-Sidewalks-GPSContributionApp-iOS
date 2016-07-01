@@ -11,8 +11,6 @@ import CoreLocation
 import MapKit
 
 class MainView: UIViewController, CLLocationManagerDelegate {
-    // Map view
-    @IBOutlet weak var mapView: MKMapView!
     
     // Button stack
     @IBOutlet weak var buttonStack: UIStackView!
@@ -20,23 +18,104 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     // Label
     @IBOutlet weak var longLabel: UILabel!
     @IBOutlet weak var latLabel: UILabel!
+    @IBOutlet weak var altLabel: UILabel!
     @IBOutlet weak var horizontalAccuracy: UILabel!
     @IBOutlet weak var verticalAccuracy: UILabel!
     
     // Location Service
     let locationManager = CLLocationManager()
-    var currentDroppedPin : MKPointAnnotation?
+    var currentDroppedPin: MKPointAnnotation?
+    var updateTimer: NSTimer!
     
-    // File stored
+    // Activity Indicator
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    // GeoJSON file location
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "GPS Marker"
         
         // Location manager configuration
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Start timer: Update GPS info periodcally
+        updateGPSInfo()
+        updateTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(updateGPSInfo), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        // Stop timer
+        updateTimer.invalidate()
+    }
+    
+    /**
+     Get current GPS information from location manager and update displaying labels
+     */
+    func updateGPSInfo() {
+        if let current = locationManager.location {
+            let coordinate = current.coordinate
+            longLabel.text = "Long: \(coordinate.longitude) degree"
+            latLabel.text = "Lat: \(coordinate.latitude) degree"
+            altLabel.text = "Alt: \(current.altitude) meters"
+            horizontalAccuracy.text = "Horizontal: \(current.horizontalAccuracy) meters"
+            verticalAccuracy.text = "Vertical: \(current.verticalAccuracy) meters"
+        }
+    }
+    
+    /**
+     Display a message window
+     */
+    func displayMessage(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+        alertController.addAction(dismissAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    /**
+     Delete all cache stored on phone
+     - parameter displayMsg: a switch indicate whether to give a prompt after procedure is completed (If the deleting process fails, a prompt will be given regardless of this parameter)
+     */
+    func invalidateCache(displayMsg: Bool) {
+        let fileManager = NSFileManager()
+        do {
+            try fileManager.removeItemAtPath(sidewalkFilePath)
+        } catch {
+            if fileManager.fileExistsAtPath(sidewalkFilePath) {
+                displayMessage("ERROR", message: "Failed to clear cache")
+                return
+            } else {
+                if displayMsg {
+                    displayMessage("SUCCESS", message: "Nothing is in cache")
+                }
+                return
+            }
+        }
+        
+        if displayMsg {
+            displayMessage("SUCCESS", message: "Cache is deleted")
+        }
+    }
+    
+    /**
+     Upload all recorded data to the cloud
+     */
+    func uploadData() {
+        // TODO: Upload data to the cloud
+    }
+    
     
     // MARK:- Action
     
@@ -46,22 +125,41 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     */
     @IBAction func buttonClicked(sender: UIButton) {
         if sender.tag == 0 {
-            // Sidewalk get clicked
+            // Sidewalk button get clicked
             performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
+            
+            return
+        }
+        
+        if sender.tag == 3 {
+            // Upload Data button get clicked
+            
+            // Upload data
+            activityIndicator.startAnimating()
+            uploadData()
+            activityIndicator.stopAnimating()
+            
+            // Delete Cache
+            invalidateCache(false)
+            
+            return
         }
         
         if sender.tag == 4 {
             // Clear Cache get clicked
-            let fileManager = NSFileManager()
-            do {
-                try fileManager.removeItemAtPath(sidewalkFilePath)
-            } catch {
-                if fileManager.fileExistsAtPath(sidewalkFilePath) {
-                    print("Remove file faliure!")
-                } else {
-                    print("Remove file success")
-                }
-            }
+            
+            // Ask user again
+            let alertController = UIAlertController(
+                title: "DELETE CACHE",
+                message: "Are you sure? Everthing you recorded will be deleted!",
+                preferredStyle: .Alert)
+            let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(dismissAction)
+            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true)})
+            alertController.addAction(confirmAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
         }
     }
     
@@ -78,14 +176,11 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         switch status {
         case .AuthorizedAlways, .AuthorizedWhenInUse:
             buttonStack.hidden = false
-            mapView.userTrackingMode = .Follow
         case .NotDetermined:
             buttonStack.hidden = true
-            mapView.userTrackingMode = .None
             manager.requestAlwaysAuthorization()
         case .Restricted, .Denied:
             buttonStack.hidden = true
-            mapView.userTrackingMode = .None
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
                 message: "In order to record location information you reported, please open this app's settings and set location access to 'Always'.",
