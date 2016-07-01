@@ -27,6 +27,9 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     var currentDroppedPin : MKPointAnnotation?
     
+    // File stored
+    let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +46,22 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     */
     @IBAction func buttonClicked(sender: UIButton) {
         if sender.tag == 0 {
+            // Sidewalk get clicked
             performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
+        }
+        
+        if sender.tag == 4 {
+            // Clear Cache get clicked
+            let fileManager = NSFileManager()
+            do {
+                try fileManager.removeItemAtPath(sidewalkFilePath)
+            } catch {
+                if fileManager.fileExistsAtPath(sidewalkFilePath) {
+                    print("Remove file faliure!")
+                } else {
+                    print("Remove file success")
+                }
+            }
         }
     }
     

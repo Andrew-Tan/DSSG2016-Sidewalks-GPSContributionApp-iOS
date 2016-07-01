@@ -30,6 +30,10 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     var sidewalkEnd: CLLocation?
     var sidewalkEndDroppedPin : MKPointAnnotation?
     
+    // File System
+    let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
+    var sidewalkJSONLibrary: JSON?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,10 +47,24 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         resetAll()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Load GeoJSON file or create a new one
+        // Check if file already exist
+        if let JSON_Data = NSData(contentsOfFile: sidewalkFilePath) {
+            // File Avaliable, fetch from document
+            sidewalkJSONLibrary = JSON(data: JSON_Data)
+        } else {
+            // File Not Avaliable, create new library
+            sidewalkJSONLibrary = JSON(["type": "FeatureCollection", "features": []])
+        }
+    }
+    
     // MARK: -Action
     
     /**
-      Start recording when user clicked "sidewalk start" button
+     Start recording when user clicked "sidewalk start" button
      */
     @IBAction func sidewalkRecordStart() {
         // Get current location
@@ -172,12 +190,37 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     @IBAction func saveRecording() {
         // TODO: Save all the recorded coordinates
         // a variable indicating whether recording is saved
-        var sendingSuccess = true
+        var saveSuccess = true
+        
+        // Save File
+        if sidewalkJSONLibrary != nil {
+            print("JSON Library before recording: \(sidewalkJSONLibrary)")
+            let startCoordinate = sidewalkStart!.coordinate
+            let endCoordinate = sidewalkEnd!.coordinate
+            if sidewalkJSONLibrary!["features"].exists() {
+                let newEntry = [["type": "Feature",
+                    "geometry": ["type": "LineString",
+                        "coordinates": [[startCoordinate.latitude, startCoordinate.longitude],
+                            [endCoordinate.latitude, endCoordinate.longitude]]]]]
+                
+                sidewalkJSONLibrary!["features"] = JSON(sidewalkJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
+                print("Recorded GeoJSON: \(sidewalkJSONLibrary)")
+                do {
+                    try sidewalkJSONLibrary?.rawData().writeToFile(sidewalkFilePath, atomically: true)
+                } catch {
+                    saveSuccess = false
+                }
+            } else {
+                saveSuccess = false
+            }
+        } else {
+            saveSuccess = false
+        }
         
         // Show alert to user
         var title: String
         var msg: String
-        if sendingSuccess {
+        if saveSuccess {
             title = "Success"
             msg = "Recording Saved"
         } else {
