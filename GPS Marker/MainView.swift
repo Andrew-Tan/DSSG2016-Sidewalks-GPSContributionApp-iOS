@@ -38,6 +38,8 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GPS Marker"
+        navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
         // Location manager configuration
         locationManager.delegate = self
