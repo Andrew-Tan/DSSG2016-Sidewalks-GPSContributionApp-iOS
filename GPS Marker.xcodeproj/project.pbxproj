@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		891215E61D26D41500940415 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 891215E51D26D41500940415 /* README.md */; };
+		895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */; };
+		895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */; };
 		89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADC1D24347E00661533 /* AppDelegate.swift */; };
 		89A2BADF1D24347E00661533 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADE1D24347E00661533 /* MainView.swift */; };
 		89A2BAE21D24347E00661533 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89A2BAE01D24347E00661533 /* Main.storyboard */; };
@@ -31,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		891215E51D26D41500940415 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurbrampRecordScene.swift; sourceTree = "<group>"; };
 		89A2BAD91D24347E00661533 /* GPS Marker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Marker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89A2BADE1D24347E00661533 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 				89A2BADC1D24347E00661533 /* AppDelegate.swift */,
 				89A2BADE1D24347E00661533 /* MainView.swift */,
 				89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */,
+				895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */,
 				89A2BB051D25A08100661533 /* SwiftyJSON.swift */,
 				89A2BAE01D24347E00661533 /* Main.storyboard */,
 				89A2BAE31D24347E00661533 /* Assets.xcassets */,
@@ -211,6 +215,7 @@
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
 				891215E61D26D41500940415 /* README.md in Sources */,
+				895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
 				89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */,
 			);
@@ -220,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
 				89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */,
 				89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 			);

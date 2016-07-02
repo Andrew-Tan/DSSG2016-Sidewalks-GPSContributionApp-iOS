@@ -31,7 +31,9 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // GeoJSON file location
+    var fileManager: NSFileManager?
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
+    let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,19 +91,18 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      - parameter displayMsg: a switch indicate whether to give a prompt after procedure is completed (If the deleting process fails, a prompt will be given regardless of this parameter)
      */
     func invalidateCache(displayMsg: Bool) {
-        let fileManager = NSFileManager()
+        if fileManager == nil {
+            fileManager = NSFileManager()
+        }
+        
         do {
-            try fileManager.removeItemAtPath(sidewalkFilePath)
+            try fileManager!.removeItemAtPath(sidewalkFilePath)
+            try fileManager!.removeItemAtPath(curbrampFilePath)
         } catch {
-            if fileManager.fileExistsAtPath(sidewalkFilePath) {
-                displayMessage("ERROR", message: "Failed to clear cache")
-                return
-            } else {
-                if displayMsg {
-                    displayMessage("SUCCESS", message: "Nothing is in cache")
-                }
-                return
+            if displayMsg {
+                displayMessage("SUCCESS", message: "Nothing is in cache")
             }
+            return
         }
         
         if displayMsg {
@@ -120,46 +121,47 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     // MARK:- Action
     
     /**
-        Handle button clicked action
-        - parameter sender: the button object who triggered this action
-    */
+     Handle button clicked action
+     - parameter sender: the button object who triggered this action
+     */
     @IBAction func buttonClicked(sender: UIButton) {
-        if sender.tag == 0 {
+        switch sender.tag {
+        case 0:
             // Sidewalk button get clicked
             performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
-            
-            return
-        }
-        
-        if sender.tag == 3 {
+            break
+        case 1:
+            // Curbramp button get clicked
+            performSegueWithIdentifier("curbrampSceneSegue", sender: sender)
+            break
+        case 2:
+            displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
+            break
+        case 3:
             // Upload Data button get clicked
-            
             // Upload data
             activityIndicator.startAnimating()
             uploadData()
             activityIndicator.stopAnimating()
-            
             // Delete Cache
             invalidateCache(false)
-            
-            return
-        }
-        
-        if sender.tag == 4 {
+            break
+        case 4:
             // Clear Cache get clicked
-            
             // Ask user again
             let alertController = UIAlertController(
                 title: "DELETE CACHE",
-                message: "Are you sure? Everthing you recorded will be deleted!",
+                message: "Are you sure? Unuploaded entries will be deleted!",
                 preferredStyle: .Alert)
             let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(dismissAction)
             let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true)})
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: nil)
-            
-            return
+            break
+        default:
+            NSLog("Undefined Caller")
+            break
         }
     }
     

@@ -105,11 +105,11 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="tNg-Fj-ILi">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="N0m-bI-nwO">
-                                <rect key="frame" x="244" y="411" width="112" height="128"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="N0m-bI-nwO">
+                                <rect key="frame" x="237" y="411" width="126" height="128"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlo-4y-GL0">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="42"/>
+                                        <rect key="frame" x="13" y="0.0" width="100" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Sidewalk"/>
                                         <connections>
@@ -117,32 +117,38 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlN-kd-UrV">
-                                        <rect key="frame" x="0.0" y="43" width="112" height="42"/>
+                                        <rect key="frame" x="0.0" y="43" width="126" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Curbramp"/>
+                                        <state key="normal" title="Curb Ramp"/>
+                                        <connections>
+                                            <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1aQ-cb-SHU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojP-gy-QHI">
-                                        <rect key="frame" x="0.0" y="86" width="63" height="42"/>
+                                        <rect key="frame" x="32" y="86" width="63" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Other"/>
+                                        <connections>
+                                            <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HtC-ID-uKm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N0m-bI-nwO" secondAttribute="bottom" constant="61" id="0jN-LW-paV"/>
-                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1Pg-4d-oll"/>
-                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="hhW-5y-dfd" secondAttribute="leading" id="4T5-Ac-ogQ"/>
-                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="5AD-t0-s1f"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="leading" secondItem="aui-pV-jDM" secondAttribute="trailing" constant="15" id="5H7-X8-NiN"/>
-                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8k-Nu-jvD"/>
-                            <constraint firstAttribute="bottom" secondItem="aui-pV-jDM" secondAttribute="bottom" constant="20" symbolic="YES" id="SEA-mF-pXN"/>
-                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="N0m-bI-nwO" secondAttribute="centerX" id="T9O-UH-7Jj"/>
-                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WWF-FD-Xxg"/>
-                            <constraint firstItem="hhW-5y-dfd" firstAttribute="top" secondItem="Ad7-r3-qVs" secondAttribute="bottom" constant="8" symbolic="YES" id="YCA-E1-ckI"/>
-                            <constraint firstItem="aui-pV-jDM" firstAttribute="baseline" secondItem="EOV-kS-8wP" secondAttribute="baseline" id="YFi-Cr-7p5"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="tVZ-Vi-BpX"/>
+                            <constraint firstItem="aui-pV-jDM" firstAttribute="baseline" secondItem="EOV-kS-8wP" secondAttribute="baseline" id="1hr-JB-AOZ"/>
+                            <constraint firstAttribute="bottom" secondItem="aui-pV-jDM" secondAttribute="bottom" constant="20" symbolic="YES" id="Cb8-pD-KDM"/>
+                            <constraint firstItem="hhW-5y-dfd" firstAttribute="top" secondItem="Ad7-r3-qVs" secondAttribute="bottom" constant="8" symbolic="YES" id="Eam-Ao-Jap"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Fsd-My-xYn"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KrC-4J-uN6"/>
+                            <constraint firstItem="EOV-kS-8wP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Szh-7E-PkF"/>
+                            <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="hhW-5y-dfd" secondAttribute="leading" id="U33-03-abh"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U7n-wm-6wR"/>
+                            <constraint firstItem="EOV-kS-8wP" firstAttribute="leading" secondItem="aui-pV-jDM" secondAttribute="trailing" constant="15" id="hPc-4P-UqE"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="N0m-bI-nwO" secondAttribute="bottom" constant="61" id="jnc-3A-0R2"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="tBt-Ye-ic0"/>
+                            <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="N0m-bI-nwO" secondAttribute="centerX" id="v0l-xS-hWq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QaU-WS-eGh"/>
@@ -155,6 +161,7 @@
                         <outlet property="longLabel" destination="ESk-2V-5Hf" id="PS8-Yf-M86"/>
                         <outlet property="verticalAccuracy" destination="zgh-Zt-fWM" id="KzK-Aw-ZvW"/>
                         <segue destination="WNx-Pj-A0W" kind="show" identifier="sidewalkSceneSegue" id="XgU-Sk-85Q"/>
+                        <segue destination="Eum-Ba-Xez" kind="show" identifier="curbrampSceneSegue" id="Jsr-9e-MWA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -253,7 +260,82 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5D-Cf-Jx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="37"/>
+            <point key="canvasLocation" x="1221" y="-175"/>
+        </scene>
+        <!--Curbramp Record Scene-->
+        <scene sceneID="cBS-M3-dq4">
+            <objects>
+                <viewController id="Eum-Ba-Xez" customClass="CurbrampRecordScene" customModule="GPS_Marker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Nj-zY-uRh"/>
+                        <viewControllerLayoutGuide type="bottom" id="lge-Xf-nxo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tNC-Zo-21n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="B5V-hQ-1aO">
+                                <rect key="frame" x="0.0" y="64" width="606" height="430"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngP-NT-qlk">
+                                <rect key="frame" x="521" y="502" width="59" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="5L4-gX-Ljc"/>
+                                    <constraint firstAttribute="height" constant="30" id="MCV-pp-U0t"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelRecording" destination="Eum-Ba-Xez" eventType="touchUpInside" id="qyN-bV-73n"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jns-rT-aEh">
+                                <rect key="frame" x="538" y="562" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="WuV-qO-4RQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveRecording" destination="Eum-Ba-Xez" eventType="touchUpInside" id="jdQ-qJ-fEH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeS-x0-N7N">
+                                <rect key="frame" x="20" y="500" width="140" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Label Curb Ramp"/>
+                                <connections>
+                                    <action selector="recordCurbramp" destination="Eum-Ba-Xez" eventType="touchUpInside" id="7TE-fC-3P2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ngP-NT-qlk" firstAttribute="trailing" secondItem="jns-rT-aEh" secondAttribute="trailing" id="4FT-0n-LSp"/>
+                            <constraint firstItem="jns-rT-aEh" firstAttribute="top" secondItem="ngP-NT-qlk" secondAttribute="bottom" constant="30" id="A4t-D2-It1"/>
+                            <constraint firstItem="ngP-NT-qlk" firstAttribute="trailing" secondItem="tNC-Zo-21n" secondAttribute="trailingMargin" id="DE6-AQ-EY4"/>
+                            <constraint firstItem="B5V-hQ-1aO" firstAttribute="leading" secondItem="tNC-Zo-21n" secondAttribute="leading" id="FMG-9z-TC1"/>
+                            <constraint firstItem="qeS-x0-N7N" firstAttribute="baseline" secondItem="ngP-NT-qlk" secondAttribute="firstBaseline" id="SgS-9J-16U"/>
+                            <constraint firstItem="lge-Xf-nxo" firstAttribute="top" secondItem="jns-rT-aEh" secondAttribute="bottom" constant="8" symbolic="YES" id="T2H-bK-ysP"/>
+                            <constraint firstItem="qeS-x0-N7N" firstAttribute="top" secondItem="B5V-hQ-1aO" secondAttribute="bottom" constant="6" id="XNc-4J-L7f"/>
+                            <constraint firstItem="qeS-x0-N7N" firstAttribute="leading" secondItem="tNC-Zo-21n" secondAttribute="leadingMargin" id="bM0-js-4wH"/>
+                            <constraint firstItem="lge-Xf-nxo" firstAttribute="top" secondItem="qeS-x0-N7N" secondAttribute="bottom" constant="66" id="l9U-bA-MsG"/>
+                            <constraint firstItem="B5V-hQ-1aO" firstAttribute="top" secondItem="9Nj-zY-uRh" secondAttribute="bottom" id="ps1-XD-10j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="B5V-hQ-1aO" secondAttribute="trailing" constant="-26" id="qI4-vp-hFL"/>
+                            <constraint firstItem="ngP-NT-qlk" firstAttribute="top" secondItem="B5V-hQ-1aO" secondAttribute="bottom" constant="8" symbolic="YES" id="thU-R4-QR5"/>
+                            <constraint firstItem="ngP-NT-qlk" firstAttribute="baseline" secondItem="qeS-x0-N7N" secondAttribute="firstBaseline" id="uGP-pQ-oOI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="ngP-NT-qlk" id="L94-bq-86E"/>
+                        <outlet property="labelCurbramp" destination="qeS-x0-N7N" id="lvk-cU-5Fu"/>
+                        <outlet property="mapView" destination="B5V-hQ-1aO" id="igL-5m-XSP"/>
+                        <outlet property="saveButton" destination="jns-rT-aEh" id="9kH-CQ-p48"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KdJ-TC-goU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1221" y="556"/>
         </scene>
     </scenes>
 </document>
