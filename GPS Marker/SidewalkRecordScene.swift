@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import SwiftyJSON
 
 class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -193,14 +194,17 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         var saveSuccess = true
         
         // Save File
-        if sidewalkJSONLibrary != nil && sidewalkJSONLibrary!["features"].exists() {
+        if sidewalkJSONLibrary != nil {
             let startCoordinate = sidewalkStart!.coordinate
             let endCoordinate = sidewalkEnd!.coordinate
+            
+            // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "LineString",
                     "coordinates": [[startCoordinate.latitude, startCoordinate.longitude],
                         [endCoordinate.latitude, endCoordinate.longitude]]]]]
             
+            // Concatenate the new entry with old entries
             sidewalkJSONLibrary!["features"] = JSON(sidewalkJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
             
             // Debug: Show saved file
@@ -238,7 +242,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     }
     
     /**
-     Reset all scene attributes to their initial state
+     Reset all scene attributes and visible items to their initial state
      */
     func resetAll() {
         // reset button visibility

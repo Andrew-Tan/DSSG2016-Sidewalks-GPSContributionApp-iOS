@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 import MapKit
+import SwiftyJSON
+import Alamofire
 
 class MainView: UIViewController, CLLocationManagerDelegate {
     
@@ -35,6 +37,12 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
     let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
     
+    // Network Temprary Server
+    let serverURL = "http://52.34.168.220:3000/wines"
+    
+    /**
+     Intiate properties that only need to be done once when the scene is initiated
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "GPS Marker"
@@ -46,6 +54,9 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
     }
     
+    /**
+     Intiate properties that only need to be done every time when this scene appear
+     */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -90,21 +101,38 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     
     /**
      Delete all cache stored on phone
+     
      - parameter displayMsg: a switch indicate whether to give a prompt after procedure is completed (If the deleting process fails, a prompt will be given regardless of this parameter)
+     
+     - parameter removeMask: a mask which indicate which file to remove
+     FOR NOW:
+     00: Remove Nothing
+     01: Remove sidewalk file ONLY
+     10: Remove curb ramp file ONLY
+     11: Remove Everything
      */
-    func invalidateCache(displayMsg: Bool) {
+    func invalidateCache(displayMsg: Bool, removeMask: Int) {
+        // Lazy Initialization
         if fileManager == nil {
             fileManager = NSFileManager()
         }
         
-        do {
-            try fileManager!.removeItemAtPath(sidewalkFilePath)
-            try fileManager!.removeItemAtPath(curbrampFilePath)
-        } catch {
-            if displayMsg {
-                displayMessage("SUCCESS", message: "Nothing is in cache")
+        if removeMask % 10 != 0 {
+            // The last digit of the mask is not 0
+            do {
+                try fileManager!.removeItemAtPath(sidewalkFilePath)
+            } catch {
+                // Deleting error handling
             }
-            return
+        }
+        
+        if removeMask / 10 != 0 {
+            // The first digit of the mask is not 0
+            do {
+                try fileManager!.removeItemAtPath(curbrampFilePath)
+            } catch {
+                // Deleting error handling
+            }
         }
         
         if displayMsg {
@@ -116,14 +144,58 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      Upload all recorded data to the cloud
      */
     func uploadData() {
-        // TODO: Upload data to the cloud
+        if let curbramp_Data = NSData(contentsOfFile: curbrampFilePath) {
+            let curbramp_JSON = addHeader(JSON(data: curbramp_Data))
+            
+            print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
+            
+            Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
+            invalidateCache(false, removeMask: 10)
+        }
+        
+        if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
+            let sidewalk_JSON = addHeader(JSON(data: sidewalk_Data))
+            
+            print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
+            
+            Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
+            invalidateCache(false, removeMask: 01)
+        }
     }
     
+    /**
+     Encode necessary device info into the JSON file
+     
+     - parameter targetJSON: the JSON data to be added info
+     
+     - return: the targetJSON with proper device info
+     */
+    func addHeader(targetJSON: JSON) -> JSON {
+        var returnJSON = targetJSON
+        returnJSON["OS"] = JSON("iOS")
+        returnJSON["DeviceID"] = JSON(GUIDString() as String)
+        
+        return returnJSON
+    }
+    
+    /**
+     Generate unique device id for each device
+     
+     - return: a string containing unique indetification for each individual device
+     */
+    func GUIDString() -> NSString {
+        let newUniqueID = CFUUIDCreate(kCFAllocatorDefault)
+        let newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
+        let guid = newUniqueIDString as NSString
+        
+        return guid.lowercaseString
+    }
     
     // MARK:- Action
     
     /**
      Handle button clicked action
+     
      - parameter sender: the button object who triggered this action
      */
     @IBAction func buttonClicked(sender: UIButton) {
@@ -145,8 +217,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             activityIndicator.startAnimating()
             uploadData()
             activityIndicator.stopAnimating()
-            // Delete Cache
-            invalidateCache(false)
+            displayMessage("SUCCESS", message: "Recordings are uploaded")
             break
         case 4:
             // Clear Cache get clicked
@@ -157,7 +228,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                 preferredStyle: .Alert)
             let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(dismissAction)
-            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true)})
+            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 11)})
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: nil)
             break
