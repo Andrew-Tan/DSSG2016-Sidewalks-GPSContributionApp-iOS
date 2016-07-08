@@ -34,7 +34,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Sidewalk"
+        self.title = "Curb Ramp"
         
         // Map delegate configuration
         mapView.delegate = self

@@ -36,6 +36,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     var fileManager: NSFileManager?
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
     let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
+    let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
     
     // Network Temprary Server
     let serverURL = "http://52.34.168.220:3000/wines"
@@ -144,22 +145,36 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      Upload all recorded data to the cloud
      */
     func uploadData() {
-        if let curbramp_Data = NSData(contentsOfFile: curbrampFilePath) {
-            let curbramp_JSON = addHeader(JSON(data: curbramp_Data))
+        if let header_Data = NSData(contentsOfFile: userCredentialFilePath) {
+            let headerJSON = JSON(data: header_Data)
             
-            print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
+            if let curbramp_Data = NSData(contentsOfFile: curbrampFilePath) {
+                let curbramp_JSON = addHeader(JSON(data: curbramp_Data), headerJSON: headerJSON)
+                
+                print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
+                
+                Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
+                invalidateCache(false, removeMask: 10)
+            }
             
-            Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
-            invalidateCache(false, removeMask: 10)
-        }
-        
-        if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
-            let sidewalk_JSON = addHeader(JSON(data: sidewalk_Data))
-            
-            print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
-            
-            Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
-            invalidateCache(false, removeMask: 01)
+            if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
+                let sidewalk_JSON = addHeader(JSON(data: sidewalk_Data), headerJSON: headerJSON)
+                
+                print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
+                
+                Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
+                invalidateCache(false, removeMask: 01)
+            }
+        } else {
+            let alertController = UIAlertController(
+                title: "Credential Error",
+                message: "Please login first",
+                preferredStyle: .Alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+            alertController.addAction(dismissAction)
+            let loginAction = UIAlertAction(title: "Login", style: .Default, handler: {(alert: UIAlertAction!) in self.performSegueWithIdentifier("LoginSceneSegue", sender: nil)})
+            alertController.addAction(loginAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
     
@@ -170,25 +185,11 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      
      - return: the targetJSON with proper device info
      */
-    func addHeader(targetJSON: JSON) -> JSON {
+    func addHeader(targetJSON: JSON, headerJSON: JSON) -> JSON {
         var returnJSON = targetJSON
-        returnJSON["OS"] = JSON("iOS")
-        returnJSON["DeviceID"] = JSON(GUIDString() as String)
+        returnJSON["UserInfo"] = headerJSON
         
         return returnJSON
-    }
-    
-    /**
-     Generate unique device id for each device
-     
-     - return: a string containing unique indetification for each individual device
-     */
-    func GUIDString() -> NSString {
-        let newUniqueID = CFUUIDCreate(kCFAllocatorDefault)
-        let newUniqueIDString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueID);
-        let guid = newUniqueIDString as NSString
-        
-        return guid.lowercaseString
     }
     
     // MARK:- Action
@@ -232,6 +233,9 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: nil)
             break
+        case 5:
+            // Login button get clicked
+            performSegueWithIdentifier("LoginSceneSegue", sender: sender)
         default:
             NSLog("Undefined Caller")
             break
