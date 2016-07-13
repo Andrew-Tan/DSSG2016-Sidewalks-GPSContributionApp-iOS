@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		891215E61D26D41500940415 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 891215E51D26D41500940415 /* README.md */; };
+		8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8950F3F11D2C242200B45FB3 /* Alamofire.framework */; };
+		895169981D30241300B6E3A9 /* UserLoginScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895169971D30241300B6E3A9 /* UserLoginScene.swift */; };
 		895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */; };
 		895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */; };
 		89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BADC1D24347E00661533 /* AppDelegate.swift */; };
@@ -18,7 +20,8 @@
 		89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */; };
 		89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
 		89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
-		89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB051D25A08100661533 /* SwiftyJSON.swift */; };
+		89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */; };
+		F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS_Marker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.debug.xcconfig"; sourceTree = "<group>"; };
 		891215E51D26D41500940415 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8950F3F11D2C242200B45FB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		895169971D30241300B6E3A9 /* UserLoginScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginScene.swift; sourceTree = "<group>"; };
 		895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurbrampRecordScene.swift; sourceTree = "<group>"; };
 		89A2BAD91D24347E00661533 /* GPS Marker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Marker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +52,8 @@
 		89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_MarkerTests.swift; sourceTree = "<group>"; };
 		89A2BAF31D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
-		89A2BB051D25A08100661533 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */,
+				8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */,
+				F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +77,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F4FD1515073D49E1E2752C3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */,
+				F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		79FE172555422B935053D1E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */,
+				8950F3F11D2C242200B45FB3 /* Alamofire.framework */,
+				1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		89A2BAD01D24347D00661533 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +103,8 @@
 				89A2BADB1D24347E00661533 /* GPS Marker */,
 				89A2BAF01D24347E00661533 /* GPS MarkerTests */,
 				89A2BADA1D24347E00661533 /* Products */,
+				0F4FD1515073D49E1E2752C3 /* Pods */,
+				79FE172555422B935053D1E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,11 +124,11 @@
 				89A2BADE1D24347E00661533 /* MainView.swift */,
 				89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */,
 				895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */,
-				89A2BB051D25A08100661533 /* SwiftyJSON.swift */,
+				895169971D30241300B6E3A9 /* UserLoginScene.swift */,
+				89A2BAE81D24347E00661533 /* Info.plist */,
 				89A2BAE01D24347E00661533 /* Main.storyboard */,
 				89A2BAE31D24347E00661533 /* Assets.xcassets */,
 				89A2BAE51D24347E00661533 /* LaunchScreen.storyboard */,
-				89A2BAE81D24347E00661533 /* Info.plist */,
 			);
 			path = "GPS Marker";
 			sourceTree = "<group>";
@@ -117,9 +149,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "GPS Marker" */;
 			buildPhases = (
+				00583C95AEF46AE4DAD124B8 /* [CP] Check Pods Manifest.lock */,
 				89A2BAD51D24347E00661533 /* Sources */,
 				89A2BAD61D24347E00661533 /* Frameworks */,
 				89A2BAD71D24347E00661533 /* Resources */,
+				E15AA4E765F027AACD96C02F /* [CP] Embed Pods Frameworks */,
+				9D91E85F5F766E18ACAA27B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,7 +195,7 @@
 				TargetAttributes = {
 					89A2BAD81D24347E00661533 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = VT4RU3J8KB;
+						DevelopmentTeam = G8MQVE5WWW;
 					};
 					89A2BAEC1D24347E00661533 = {
 						CreatedOnToolsVersion = 7.3;
@@ -207,6 +242,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		00583C95AEF46AE4DAD124B8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D91E85F5F766E18ACAA27B2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E15AA4E765F027AACD96C02F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		89A2BAD51D24347E00661533 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -215,9 +298,9 @@
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
 				891215E61D26D41500940415 /* README.md in Sources */,
+				895169981D30241300B6E3A9 /* UserLoginScene.swift in Sources */,
 				895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
-				89A2BB061D25A08100661533 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +408,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -348,31 +432,37 @@
 		};
 		89A2BAF71D24347E00661533 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-Marker";
+				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		89A2BAF81D24347E00661533 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-Marker";
+				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

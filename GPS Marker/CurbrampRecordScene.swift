@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import SwiftyJSON
 
 class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -33,7 +34,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Sidewalk"
+        self.title = "Curb Ramp"
         
         // Map delegate configuration
         mapView.delegate = self
@@ -122,13 +123,15 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         var saveSuccess = true
         
         // Save File
-        if curbrampJSONLibrary != nil && curbrampJSONLibrary!["features"].exists() {
+        if curbrampJSONLibrary != nil {
             let curbrampCoordinate = curbramp!.coordinate
             
+            // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "Point",
                     "coordinates": [curbrampCoordinate.latitude, curbrampCoordinate.longitude]]]]
             
+            // Concatenate the new entry with old entries
             curbrampJSONLibrary!["features"] = JSON(curbrampJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
             
             // Debug: Show saved file
@@ -166,7 +169,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     }
     
     /**
-     Reset all scene attributes to their initial state
+     Reset all scene attributes and visible items to their initial state
      */
     func resetAll() {
         // reset button visibility
