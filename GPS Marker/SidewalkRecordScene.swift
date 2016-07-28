@@ -20,7 +20,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem?
     
     // Location Service
     let locationManager = CLLocationManager()
@@ -38,6 +38,10 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Sidewalk"
+        
+        // Define Save Button on the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
+        saveButton = navigationItem.rightBarButtonItem
         
         // Map delegate configuration
         mapView.delegate = self
@@ -110,8 +114,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         cancelButton.hidden = false
         cancelButton.enabled = true
         
-        saveButton.hidden = true
-        saveButton.enabled = false
+        saveButton?.enabled = false
     }
     
     /**
@@ -175,8 +178,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         cancelButton.hidden = false
         cancelButton.enabled = true
         
-        saveButton.hidden = false
-        saveButton.enabled = true
+        saveButton?.enabled = true
     }
     
     /**
@@ -189,7 +191,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     /**
      Save recording when user clicked "save" button
      */
-    @IBAction func saveRecording() {
+    func saveRecording() {
         // a variable indicating whether recording is saved
         var saveSuccess = true
         
@@ -255,8 +257,7 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         cancelButton.hidden = true
         cancelButton.enabled = false
         
-        saveButton.hidden = true
-        saveButton.enabled = false
+        saveButton?.enabled = false
         
         // reset map view configuration
         mapView.removeAnnotations(mapView.annotations)
@@ -288,13 +289,13 @@ class SidewalkRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         case .NotDetermined:
             startButton.enabled = false
             endButton.enabled = false
-            saveButton.enabled = false
+            saveButton?.enabled = false
             mapView.userTrackingMode = .None
             manager.requestAlwaysAuthorization()
         case .Restricted, .Denied:
             startButton.enabled = false
             endButton.enabled = false
-            saveButton.enabled = false
+            saveButton?.enabled = false
             mapView.userTrackingMode = .None
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",

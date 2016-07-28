@@ -19,7 +19,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     // Buttons
     @IBOutlet weak var labelCurbramp: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem?
     
     // Location Service
     let locationManager = CLLocationManager()
@@ -35,6 +35,10 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Curb Ramp"
+        
+        // Define Save Button on the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
+        saveButton = navigationItem.rightBarButtonItem
         
         // Map delegate configuration
         mapView.delegate = self
@@ -104,8 +108,8 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         cancelButton.hidden = false
         cancelButton.enabled = true
         
-        saveButton.hidden = false
-        saveButton.enabled = true
+        saveButton?.enabled = false
+        saveButton?.enabled = true
     }
     
     /**
@@ -179,8 +183,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         cancelButton.hidden = true
         cancelButton.enabled = false
         
-        saveButton.hidden = true
-        saveButton.enabled = false
+        saveButton?.enabled = false
         
         // reset map view configuration
         mapView.removeAnnotations(mapView.annotations)
@@ -209,12 +212,12 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
             resetAll()
         case .NotDetermined:
             labelCurbramp.enabled = false
-            saveButton.enabled = false
+            saveButton?.enabled = false
             mapView.userTrackingMode = .None
             manager.requestAlwaysAuthorization()
         case .Restricted, .Denied:
             labelCurbramp.enabled = false
-            saveButton.enabled = false
+            saveButton?.enabled = false
             mapView.userTrackingMode = .None
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
