@@ -105,7 +105,6 @@ class UserLoginScene: UIViewController, UITextFieldDelegate {
         credential["Platform"] = "iOS"
         
         displayMessage("Success", message: "Credential Saved")
-        print("\(userCredentialJSON)")
     }
     
     //MARK:- MapViewDelegate methods

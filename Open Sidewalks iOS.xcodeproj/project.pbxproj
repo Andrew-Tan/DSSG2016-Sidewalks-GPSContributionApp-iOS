@@ -28,6 +28,8 @@
 		89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */; };
 		89CB0C211D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */; };
 		89CB0C221D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */; };
+		89CB0C241D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
+		89CB0C251D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
 		F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,7 @@
 		89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropDown.framework; path = "Pods/../build/Debug-iphoneos/DropDown/DropDown.framework"; sourceTree = "<group>"; };
 		89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineStringRecordScene.swift; path = Base/LineStringRecordScene.swift; sourceTree = "<group>"; };
 		89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossingRecordScene.swift; sourceTree = "<group>"; };
+		89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointRecordScene.swift; path = Base/PointRecordScene.swift; sourceTree = "<group>"; };
 		F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +167,7 @@
 			children = (
 				89CB0C151D49C83600D0F8CF /* RecordScene.swift */,
 				89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */,
+				89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -323,6 +327,7 @@
 			files = (
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
+				89CB0C241D4BF90900D0F8CF /* PointRecordScene.swift in Sources */,
 				89CB0C1E1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
 				89CB0C211D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */,
 				891215E61D26D41500940415 /* README.md in Sources */,
@@ -338,6 +343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
+				89CB0C251D4BF90900D0F8CF /* PointRecordScene.swift in Sources */,
 				89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
 				89CB0C171D49C83600D0F8CF /* RecordScene.swift in Sources */,
 				89CB0C221D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */,

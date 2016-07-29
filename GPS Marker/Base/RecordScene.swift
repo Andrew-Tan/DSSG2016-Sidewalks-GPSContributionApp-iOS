@@ -47,6 +47,9 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         resetAll()
     }
     
+    /**
+     Configure global options for drop down
+    */
     func configureDropDown() {
         DropDown.appearance().textColor = UIColor.blackColor()
         DropDown.appearance().textFont = UIFont.systemFontOfSize(15)
@@ -72,7 +75,12 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         return jsonLibrary
     }
     
-    func loadAssetJSON(assetName: String) -> JSON {
+    /**
+     Load JSON object from an Assets.xcassets
+     
+     - param assetName: The name of the asset
+     */
+    private func loadAssetJSON(assetName: String) -> JSON {
         if let asset = NSDataAsset(name: assetName) {
             let data = asset.data
             return JSON(data: data)
@@ -81,6 +89,12 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         }
     }
     
+    /**
+     Prepare and show drop down menu for attributes
+     
+     - param optionName: The name of the option, should have an entry in the format "Options_XXX" in Assets.xcassets
+     - param sender: The button who activate this drop down
+    */
     func displayDropDown(optionName: String, sender: UIButton) {
         dropDown.hide()
         
@@ -114,8 +128,6 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
             } else {
                 self.savedProperties[optionName.lowercaseString] = dataKeySet[index]
             }
-            
-            print("Current Saved Options: \(self.savedProperties)")
         }
         
         dropDown.show()
@@ -125,10 +137,12 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      Reset all scene attributes and visible items to their initial state
      */
     func resetAll() {
-        // reset button visibility
         saveButton?.enabled = false
     }
     
+    /**
+     Reset a map view to its initial state
+    */
     func resetMap(mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
@@ -138,6 +152,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
     
     /**
      Save recording when user clicked "save" button
+     Should be overrieded by future inherited class
      */
     func saveRecording() {
         return

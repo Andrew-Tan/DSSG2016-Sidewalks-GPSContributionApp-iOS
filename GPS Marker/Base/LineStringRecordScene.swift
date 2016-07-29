@@ -61,17 +61,6 @@ class LineStringRecordScene: RecordScene {
         // Get current location
         self.lineStart = locationManager.location
         
-        // Debug: Print recorded point information
-        if let validLocation = self.lineStart {
-            print("Long: \(validLocation.coordinate.longitude)")
-            print("Lat: \(validLocation.coordinate.latitude)")
-            print("Horizontal: \(validLocation.horizontalAccuracy) meters")
-            print("Vertical: \(validLocation.verticalAccuracy) meters")
-        } else {
-            print("Unable to get location information!")
-            return
-        }
-        
         // Set mapView annotation
         // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
         let span = MKCoordinateSpanMake(0.001, 0.001)
@@ -108,17 +97,6 @@ class LineStringRecordScene: RecordScene {
     @IBAction func lineRecordEnd() {
         // Get current location
         self.lineEnd = locationManager.location
-        
-        // Debug: Print recorded point information
-        if let validLocation = self.lineEnd {
-            print("Long: \(validLocation.coordinate.longitude)")
-            print("Lat: \(validLocation.coordinate.latitude)")
-            print("Horizontal: \(validLocation.horizontalAccuracy) meters")
-            print("Vertical: \(validLocation.verticalAccuracy) meters")
-        } else {
-            print("Unable to get location information!")
-            return
-        }
         
         // Stop map user tracking mode
         mapView.userTrackingMode = .None
@@ -200,16 +178,12 @@ class LineStringRecordScene: RecordScene {
             // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "LineString",
-                    "coordinates": [[startCoordinate.latitude, startCoordinate.longitude],
-                                    [endCoordinate.latitude, endCoordinate.longitude]]],
+                    "coordinates": [[startCoordinate.longitude, startCoordinate.latitude],
+                                    [endCoordinate.longitude, endCoordinate.latitude]]],
                 "properties": self.savedProperties]]
             
             // Concatenate the new entry with old entries
             lineJSONLibrary!["features"] = JSON(lineJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
-            
-            // Debug: Show saved file
-            print("Recorded GeoJSON: \(lineJSONLibrary)")
-            
             
             do {
                 try lineJSONLibrary?.rawData().writeToFile(lineFilePath, atomically: true)
