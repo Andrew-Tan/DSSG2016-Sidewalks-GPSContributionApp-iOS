@@ -64,7 +64,7 @@ class SidewalkRecordScene: LineStringRecordScene {
      Start recording when user clicked "sidewalk start" button
      */
     @IBAction func sidewalkRecordStart() {
-        self.title = "Start Recording Sidewalk"
+        self.title = "Sidewalk Start"
         super.lineRecordStart()
     }
     
@@ -72,7 +72,7 @@ class SidewalkRecordScene: LineStringRecordScene {
      End recording when user clicked "sidewalk end" button
      */
     @IBAction func sidewalkRecordEnd() {
-        self.title = "End Recording Sidewalk"
+        self.title = "Sidewalk End"
         super.lineRecordEnd()
     }
     

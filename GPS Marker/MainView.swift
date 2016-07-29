@@ -36,6 +36,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     var fileManager: NSFileManager?
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
     let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
+    let crossingFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/crossing-collection.json"
     let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
     
     // Network Temprary Server
@@ -47,12 +48,21 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Open Sidewalks"
-        navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+        // navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
+        // navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
         // Location manager configuration
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        
+        // Define Buttons on the navigation bar
+        let loginButton = UIBarButtonItem(title: "Login", style: .Plain, target: self, action: #selector(buttonClicked))
+        loginButton.tag = 5
+        let uploadButton = UIBarButtonItem(title: "Upload", style: .Plain, target: self, action: #selector(buttonClicked))
+        uploadButton.tag = 3
+        navigationItem.leftBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem = uploadButton
+        
     }
     
     /**
@@ -107,10 +117,11 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      
      - parameter removeMask: a mask which indicate which file to remove
      FOR NOW:
-     00: Remove Nothing
-     01: Remove sidewalk file ONLY
-     10: Remove curb ramp file ONLY
-     11: Remove Everything
+     000: Remove Nothing
+     001: Remove crossing file ONLY
+     010: Remove sidewalk file ONLY
+     100: Remove curb ramp file ONLY
+     111: Remove Everything
      */
     func invalidateCache(displayMsg: Bool, removeMask: Int) {
         // Lazy Initialization
@@ -136,6 +147,15 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             }
         }
         
+        if removeMask / 100 != 0 {
+            // The first digit of the mask is not 0
+            do {
+                try fileManager!.removeItemAtPath(crossingFilePath)
+            } catch {
+                // Deleting error handling
+            }
+        }
+        
         if displayMsg {
             displayMessage("SUCCESS", message: "Cache is deleted")
         }
@@ -154,7 +174,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                 print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
                 
                 Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 10)
+                invalidateCache(false, removeMask: 100)
             }
             
             if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
@@ -163,7 +183,16 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                 print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
                 
                 Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 01)
+                invalidateCache(false, removeMask: 010)
+            }
+            
+            if let crossing_Data = NSData(contentsOfFile: crossingFilePath) {
+                let crossing_JSON = addHeader(JSON(data: crossing_Data), headerJSON: headerJSON)
+                
+                print("Data to be uploaded CROSSING:\n \(crossing_JSON.dictionaryObject)")
+                
+                Alamofire.request(.POST, serverURL, parameters: crossing_JSON.dictionaryObject, encoding: .JSON)
+                invalidateCache(false, removeMask: 001)
             }
         } else {
             let alertController = UIAlertController(
@@ -230,7 +259,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                 preferredStyle: .Alert)
             let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(dismissAction)
-            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 11)})
+            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 111)})
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: nil)
             break

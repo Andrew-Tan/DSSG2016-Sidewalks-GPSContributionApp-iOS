@@ -473,7 +473,6 @@
 			baseConfigurationReference = 551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -487,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = "Open Sidewalks iOS";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -496,7 +495,6 @@
 			baseConfigurationReference = F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -510,7 +508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = "Open Sidewalks iOS";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -33,7 +33,6 @@ class PointRecordScene: RecordScene {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Curb Ramp"
         
         // Map delegate configuration
         mapView.delegate = self
@@ -47,9 +46,6 @@ class PointRecordScene: RecordScene {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Load GeoJSON file or create a new one
-        self.pointJSONLibrary = loadData(pointFilePath)
         
         // Drop down view
         dropDown.anchorView = self.dropDownView
