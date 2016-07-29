@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import SwiftyJSON
 
-class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class CurbrampRecordScene: RecordScene {
     
     // Map
     @IBOutlet weak var mapView: MKMapView!
@@ -19,10 +19,6 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     // Buttons
     @IBOutlet weak var labelCurbramp: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var saveButton: UIBarButtonItem?
-    
-    // Location Service
-    let locationManager = CLLocationManager()
     
     // Recorded start and end point for sidewalk
     var curbramp: CLLocation?
@@ -35,10 +31,6 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Curb Ramp"
-        
-        // Define Save Button on the navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
-        saveButton = navigationItem.rightBarButtonItem
         
         // Map delegate configuration
         mapView.delegate = self
@@ -54,14 +46,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         super.viewDidAppear(animated)
         
         // Load GeoJSON file or create a new one
-        // Check if file already exist
-        if let JSON_Data = NSData(contentsOfFile: curbrampFilePath) {
-            // File Avaliable, fetch from document
-            curbrampJSONLibrary = JSON(data: JSON_Data)
-        } else {
-            // File Not Avaliable, create new library
-            curbrampJSONLibrary = JSON(["type": "FeatureCollection", "features": []])
-        }
+        self.curbrampJSONLibrary = loadData(curbrampFilePath)
     }
     
     // MARK: -Action
@@ -122,7 +107,9 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     /**
      Save recording when user clicked "save" button
      */
-    @IBAction func saveRecording() {
+    @IBAction override func saveRecording() {
+        super.saveRecording()
+        
         // a variable indicating whether recording is saved
         var saveSuccess = true
         
@@ -152,22 +139,7 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
         }
         
         // Show alert to user
-        var title: String
-        var msg: String
-        if saveSuccess {
-            title = "Success"
-            msg = "Recording Saved"
-        } else {
-            title = "Fail"
-            msg = "Recording Failed to Save"
-        }
-        let alertController = UIAlertController(
-            title: title,
-            message: msg,
-            preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-        alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        showSaveSuccessAlert(saveSuccess)
         
         resetAll()
     }
@@ -175,21 +147,16 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     /**
      Reset all scene attributes and visible items to their initial state
      */
-    func resetAll() {
+    override func resetAll() {
+        super.resetAll()
+        resetMap(mapView)
+        
         // reset button visibility
         labelCurbramp.hidden = false
         labelCurbramp.enabled = true
         
         cancelButton.hidden = true
         cancelButton.enabled = false
-        
-        saveButton?.enabled = false
-        
-        // reset map view configuration
-        mapView.removeAnnotations(mapView.annotations)
-        mapView.removeOverlays(mapView.overlays)
-        mapView.userTrackingMode = .Follow
-        mapView.showsUserLocation = true
         
         // reset all recording variables
         curbramp = nil
@@ -198,61 +165,18 @@ class CurbrampRecordScene: UIViewController, CLLocationManagerDelegate, MKMapVie
     
     //MARK:- CLLocationManagerDelegate methods
     
-    /**
-     Handle different cases when location authorization status changed
-     
-     - parameter manager: the CLLocationManager
-     - parameter status: the current status of location authorization
-     */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        mapView.removeAnnotations(mapView.annotations)
+    override func locationServiceDisabled(manager: CLLocationManager) {
+        super.locationServiceDisabled(manager)
         
-        switch status {
-        case .AuthorizedAlways, .AuthorizedWhenInUse:
-            resetAll()
-        case .NotDetermined:
-            labelCurbramp.enabled = false
-            saveButton?.enabled = false
-            mapView.userTrackingMode = .None
-            manager.requestAlwaysAuthorization()
-        case .Restricted, .Denied:
-            labelCurbramp.enabled = false
-            saveButton?.enabled = false
-            mapView.userTrackingMode = .None
-            let alertController = UIAlertController(
-                title: "Background Location Access Disabled",
-                message: "In order to record location information you reported, please open this app's settings and set location access to 'Always'.",
-                preferredStyle: .Alert)
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-            }
-            alertController.addAction(openAction)
-            
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }
+        labelCurbramp.enabled = false
+        mapView.userTrackingMode = .None
     }
     
-    
-    //MARK:- MapViewDelegate methods
-    
-    /**
-     Delegate function which return renderer for overlays in the map
-     */
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolyline {
-            let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.blueColor()
-            polylineRenderer.lineWidth = 5
-            return polylineRenderer
-        }
+    override func locationServiceNotDetermined(manager: CLLocationManager) {
+        super.locationServiceNotDetermined(manager)
         
-        return MKOverlayRenderer()
+        labelCurbramp.enabled = false
+        mapView.userTrackingMode = .None
     }
 }
 

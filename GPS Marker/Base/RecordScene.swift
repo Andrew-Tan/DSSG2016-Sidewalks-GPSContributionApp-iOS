@@ -10,45 +10,86 @@ import UIKit
 import CoreLocation
 import MapKit
 import SwiftyJSON
+import DropDown
 
 class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     // Buttons
-    var saveButton: UIBarButtonItem?
+    var saveButton: UIBarButtonItem!
     
     // Location Service
-    let locationManager = CLLocationManager()
+    var locationManager: CLLocationManager!
     
-    // File System
-    var jsonFilePath: String!
-    var jsonLibrary: JSON!
+    // Drop down menu
+    let dropDown = DropDown()
+    var savedProperties: [String: String] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        // Load GeoJSON file or create a new one
-        // Check if file already exist
-        if let JSON_Data = NSData(contentsOfFile: self.jsonFilePath) {
-            // File Avaliable, fetch from document
-            jsonLibrary = JSON(data: JSON_Data)
-        } else {
-            // File Not Avaliable, create new library
-            jsonLibrary = JSON(["type": "FeatureCollection", "features": []])
-        }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        locationManager = CLLocationManager()
         
         // Define Save Button on the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
         saveButton = navigationItem.rightBarButtonItem
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         // Location manager configuration
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         
         resetAll()
+    }
+    
+    func loadData(jsonFilePath: String) -> JSON {
+        // Load GeoJSON file or create a new one
+        // Check if file already exist
+        var jsonLibrary: JSON
+        
+        if let JSON_Data = NSData(contentsOfFile: jsonFilePath) {
+            // File Avaliable, fetch from document
+            jsonLibrary = JSON(data: JSON_Data)
+        } else {
+            // File Not Avaliable, create new library
+            jsonLibrary = JSON(["type": "FeatureCollection", "features": []])
+        }
+        
+        return jsonLibrary
+    }
+    
+    func loadAssetJSON(assetName: String) -> JSON {
+        if let asset = NSDataAsset(name: assetName) {
+            let data = asset.data
+            return JSON(data: data)
+        } else {
+            return nil
+        }
+    }
+    
+    func displayDropDown(optionName: String, sender: UIButton) {
+        dropDown.hide()
+        
+        let assetJSON = loadAssetJSON("Options_\(optionName)")
+        var displayKeySet: [String] = []
+        var dataKeySet: [String] = []
+        
+        for (displayKey, dataKey) in assetJSON {
+            displayKeySet.append(displayKey)
+            dataKeySet.append(dataKey.string!)
+        }
+        
+        dropDown.dataSource = displayKeySet
+        
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            sender.setTitle("\(optionName): \(item)", forState: .Normal)
+            self.savedProperties[optionName.lowercaseString] = dataKeySet[index]
+            print("Current Saved Options: \(self.savedProperties)")
+        }
+        
+        dropDown.show()
     }
     
     /**
@@ -59,11 +100,38 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         saveButton?.enabled = false
     }
     
+    func resetMap(mapView: MKMapView) {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.removeOverlays(mapView.overlays)
+        mapView.userTrackingMode = .Follow
+        mapView.showsUserLocation = true
+    }
+    
     /**
      Save recording when user clicked "save" button
      */
     func saveRecording() {
-        resetAll()
+        return
+    }
+    
+    func showSaveSuccessAlert(success: Bool) {
+        
+        var title: String
+        var msg: String
+        if success {
+            title = "Success"
+            msg = "Recording Saved"
+        } else {
+            title = "Fail"
+            msg = "Recording Failed to Save"
+        }
+        let alertController = UIAlertController(
+            title: title,
+            message: msg,
+            preferredStyle: .Alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(dismissAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     //MARK:- CLLocationManagerDelegate methods

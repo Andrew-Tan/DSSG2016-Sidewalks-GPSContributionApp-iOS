@@ -23,6 +23,9 @@
 		89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */; };
 		89CB0C161D49C83600D0F8CF /* RecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C151D49C83600D0F8CF /* RecordScene.swift */; };
 		89CB0C171D49C83600D0F8CF /* RecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C151D49C83600D0F8CF /* RecordScene.swift */; };
+		89CB0C1C1D4AA2E900D0F8CF /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */; };
+		89CB0C1E1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */; };
+		89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */; };
 		F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +59,9 @@
 		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
 		89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		89CB0C151D49C83600D0F8CF /* RecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordScene.swift; path = Base/RecordScene.swift; sourceTree = "<group>"; };
+		89CB0C191D4A9A2C00D0F8CF /* DownPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DownPicker.framework; path = "Pods/../build/Debug-iphoneos/DownPicker/DownPicker.framework"; sourceTree = "<group>"; };
+		89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropDown.framework; path = "Pods/../build/Debug-iphoneos/DropDown/DropDown.framework"; sourceTree = "<group>"; };
+		89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineStringRecordScene.swift; path = Base/LineStringRecordScene.swift; sourceTree = "<group>"; };
 		F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89CB0C1C1D4AA2E900D0F8CF /* DropDown.framework in Frameworks */,
 				89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */,
 				8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */,
 				F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */,
@@ -92,6 +99,8 @@
 		79FE172555422B935053D1E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */,
+				89CB0C191D4A9A2C00D0F8CF /* DownPicker.framework */,
 				89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */,
 				8950F3F11D2C242200B45FB3 /* Alamofire.framework */,
 				1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */,
@@ -150,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				89CB0C151D49C83600D0F8CF /* RecordScene.swift */,
+				89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -309,6 +319,7 @@
 			files = (
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
+				89CB0C1E1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
 				891215E61D26D41500940415 /* README.md in Sources */,
 				895169981D30241300B6E3A9 /* UserLoginScene.swift in Sources */,
 				895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
@@ -322,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
+				89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
 				89CB0C171D49C83600D0F8CF /* RecordScene.swift in Sources */,
 				89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */,
 				89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
@@ -452,6 +464,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DownPicker",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DropDown",
+				);
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -470,6 +487,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DownPicker",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DropDown",
+				);
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

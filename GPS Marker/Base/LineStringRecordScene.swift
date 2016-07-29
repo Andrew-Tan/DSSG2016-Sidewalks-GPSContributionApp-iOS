@@ -1,8 +1,8 @@
 //
-//  SidewalkRecordScene.swift
+//  LineStringRecordScene.swift
 //  GPS Marker
 //
-//  Created by Andrew Tan on 6/29/16.
+//  Created by Andrew Tan on 7/28/16.
 //  Copyright © 2016 Taskar Center for Accessible Technology. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import SwiftyJSON
 
-class SidewalkRecordScene: RecordScene {
+class LineStringRecordScene: RecordScene {
     
     // Map
     @IBOutlet weak var mapView: MKMapView!
@@ -20,29 +20,28 @@ class SidewalkRecordScene: RecordScene {
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     
-    // Recorded start and end point for sidewalk
-    var sidewalkStart: CLLocation?
-    var sidewalkStartDroppedPin : MKPointAnnotation?
-    var sidewalkEnd: CLLocation?
-    var sidewalkEndDroppedPin : MKPointAnnotation?
+    // Recorded start and end point for line
+    var lineStart: CLLocation?
+    var lineStartDroppedPin : MKPointAnnotation?
+    var lineEnd: CLLocation?
+    var lineEndDroppedPin : MKPointAnnotation?
     
     // Drop down text fields
     @IBOutlet weak var dropDownView: UIView!
     
     // File System
-    let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
-    var sidewalkJSONLibrary: JSON?
+    var lineFilePath = ""
+    var lineJSONLibrary: JSON?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Sidewalk"
         
         // Map delegate configuration
         mapView.delegate = self
         
         // Location manager configuration
-        super.locationManager.delegate = self
-        super.locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         
         resetAll()
     }
@@ -51,39 +50,22 @@ class SidewalkRecordScene: RecordScene {
         super.viewDidAppear(animated)
         
         // Load GeoJSON file
-        self.sidewalkJSONLibrary = loadData(sidewalkFilePath)
+        self.lineJSONLibrary = loadData(lineFilePath)
         
         dropDown.anchorView = self.dropDownView
     }
     
     // MARK: -Action
     
-    @IBAction func callDropDown(sender: UIButton) {
-        var senderTitle = "Unknown"
-        
-        switch (sender.tag) {
-        case 50:
-            senderTitle = "Access"
-        case 51:
-            senderTitle = "Surface"
-            break
-        default:
-            break
-        }
-        
-        displayDropDown(senderTitle, sender: sender)
-    }
-    
-    
     /**
-     Start recording when user clicked "sidewalk start" button
+     Start recording when user clicked "line start" button
      */
-    @IBAction func sidewalkRecordStart() {
+    @IBAction func lineRecordStart() {
         // Get current location
-        self.sidewalkStart = locationManager.location
+        self.lineStart = locationManager.location
         
         // Debug: Print recorded point information
-        if let validLocation = self.sidewalkStart {
+        if let validLocation = self.lineStart {
             print("Long: \(validLocation.coordinate.longitude)")
             print("Lat: \(validLocation.coordinate.latitude)")
             print("Horizontal: \(validLocation.horizontalAccuracy) meters")
@@ -96,19 +78,19 @@ class SidewalkRecordScene: RecordScene {
         // Set mapView annotation
         // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
         let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: self.sidewalkStart!.coordinate, span: span)
+        let region = MKCoordinateRegion(center: self.lineStart!.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
         // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
-        if sidewalkStartDroppedPin != nil {
-            mapView.removeAnnotation(sidewalkStartDroppedPin!)
-            sidewalkStartDroppedPin = nil
+        if lineStartDroppedPin != nil {
+            mapView.removeAnnotation(lineStartDroppedPin!)
+            lineStartDroppedPin = nil
         }
         
-        sidewalkStartDroppedPin = MKPointAnnotation()
-        sidewalkStartDroppedPin!.coordinate = self.sidewalkStart!.coordinate
-        sidewalkStartDroppedPin!.title = "Sidewalk Start"
-        mapView.addAnnotation(sidewalkStartDroppedPin!)
+        lineStartDroppedPin = MKPointAnnotation()
+        lineStartDroppedPin!.coordinate = self.lineStart!.coordinate
+        lineStartDroppedPin!.title = "line Start"
+        mapView.addAnnotation(lineStartDroppedPin!)
         
         // Adjust button visiblities
         startButton.hidden = false
@@ -124,14 +106,14 @@ class SidewalkRecordScene: RecordScene {
     }
     
     /**
-     End recording when user clicked "sidewalk end" button
+     End recording when user clicked "line end" button
      */
-    @IBAction func sidewalkRecordEnd() {
+    @IBAction func lineRecordEnd() {
         // Get current location
-        self.sidewalkEnd = locationManager.location
+        self.lineEnd = locationManager.location
         
         // Debug: Print recorded point information
-        if let validLocation = self.sidewalkEnd {
+        if let validLocation = self.lineEnd {
             print("Long: \(validLocation.coordinate.longitude)")
             print("Lat: \(validLocation.coordinate.latitude)")
             print("Horizontal: \(validLocation.horizontalAccuracy) meters")
@@ -148,29 +130,29 @@ class SidewalkRecordScene: RecordScene {
         // Set mapView annotation
         // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
         let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: self.sidewalkEnd!.coordinate, span: span)
+        let region = MKCoordinateRegion(center: self.lineEnd!.coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
         // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
-        if sidewalkEndDroppedPin != nil {
-            mapView.removeAnnotation(sidewalkEndDroppedPin!)
-            sidewalkEndDroppedPin = nil
+        if lineEndDroppedPin != nil {
+            mapView.removeAnnotation(lineEndDroppedPin!)
+            lineEndDroppedPin = nil
         }
         
-        sidewalkEndDroppedPin = MKPointAnnotation()
-        sidewalkEndDroppedPin!.coordinate = self.sidewalkEnd!.coordinate
-        sidewalkEndDroppedPin!.title = "Sidewalk End"
-        mapView.addAnnotation(sidewalkEndDroppedPin!)
+        lineEndDroppedPin = MKPointAnnotation()
+        lineEndDroppedPin!.coordinate = self.lineEnd!.coordinate
+        lineEndDroppedPin!.title = "line End"
+        mapView.addAnnotation(lineEndDroppedPin!)
         
-        if sidewalkStart == nil || sidewalkEnd == nil {
-            NSLog("nil value found for sidewalk recording scene")
-            NSLog("Sidewalk Start: \(sidewalkStart)")
-            NSLog("Sidewalk End: \(sidewalkEnd)")
+        if lineStart == nil || lineEnd == nil {
+            NSLog("nil value found for line recording scene")
+            NSLog("line Start: \(lineStart)")
+            NSLog("line End: \(lineEnd)")
             return
         }
         
         // Draw a line between start and end coordinate
-        var points = [self.sidewalkStart!.coordinate, self.sidewalkEnd!.coordinate]
+        var points = [self.lineStart!.coordinate, self.lineEnd!.coordinate]
         let geodesic = MKGeodesicPolyline(coordinates: &points[0], count:2 )
         self.mapView.addOverlay(geodesic)
         
@@ -203,20 +185,20 @@ class SidewalkRecordScene: RecordScene {
         // a variable indicating whether recording is saved
         var saveSuccess = true
         
-        if self.sidewalkStart == nil {
+        if self.lineStart == nil {
             print("Start is nil")
             return
         }
         
-        if self.sidewalkEnd == nil {
+        if self.lineEnd == nil {
             print("End is nil")
             return
         }
         
         // Save File
-        if sidewalkJSONLibrary != nil {
-            let startCoordinate = self.sidewalkStart!.coordinate
-            let endCoordinate = self.sidewalkEnd!.coordinate
+        if lineJSONLibrary != nil {
+            let startCoordinate = self.lineStart!.coordinate
+            let endCoordinate = self.lineEnd!.coordinate
             
             // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
@@ -225,14 +207,14 @@ class SidewalkRecordScene: RecordScene {
                         [endCoordinate.latitude, endCoordinate.longitude]]]]]
             
             // Concatenate the new entry with old entries
-            sidewalkJSONLibrary!["features"] = JSON(sidewalkJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
+            lineJSONLibrary!["features"] = JSON(lineJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
             
             // Debug: Show saved file
-            print("Recorded GeoJSON: \(sidewalkJSONLibrary)")
+            print("Recorded GeoJSON: \(lineJSONLibrary)")
             
             
             do {
-                try sidewalkJSONLibrary?.rawData().writeToFile(sidewalkFilePath, atomically: true)
+                try lineJSONLibrary?.rawData().writeToFile(lineFilePath, atomically: true)
             } catch {
                 saveSuccess = false
             }
@@ -264,10 +246,10 @@ class SidewalkRecordScene: RecordScene {
         cancelButton.enabled = false
         
         // reset all recording variables
-        sidewalkStart = nil
-        sidewalkStartDroppedPin = nil
-        sidewalkEnd = nil
-        sidewalkEnd = nil
+        lineStart = nil
+        lineStartDroppedPin = nil
+        lineEnd = nil
+        lineEnd = nil
     }
     
     
