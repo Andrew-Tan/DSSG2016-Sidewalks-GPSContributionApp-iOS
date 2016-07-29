@@ -46,7 +46,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "GPS Marker"
+        self.title = "Open Sidewalks"
         navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
@@ -187,7 +187,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      */
     func addHeader(targetJSON: JSON, headerJSON: JSON) -> JSON {
         var returnJSON = targetJSON
-        returnJSON["UserInfo"] = headerJSON
+        returnJSON["properties"]["UserInfo"] = headerJSON
         
         return returnJSON
     }
@@ -210,7 +210,8 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             performSegueWithIdentifier("curbrampSceneSegue", sender: sender)
             break
         case 2:
-            displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
+            // displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
+            performSegueWithIdentifier("crossingSceneSegue", sender: sender)
             break
         case 3:
             // Upload Data button get clicked

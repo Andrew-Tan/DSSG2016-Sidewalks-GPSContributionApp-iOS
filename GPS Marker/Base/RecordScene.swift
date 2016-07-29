@@ -32,6 +32,9 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         // Define Save Button on the navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
         saveButton = navigationItem.rightBarButtonItem
+        
+        // Setting global configuration for drop down menu
+        configureDropDown()
     }
     
     override func viewDidLoad() {
@@ -44,6 +47,13 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         resetAll()
     }
     
+    func configureDropDown() {
+        DropDown.appearance().textColor = UIColor.blackColor()
+        DropDown.appearance().textFont = UIFont.systemFontOfSize(15)
+        DropDown.appearance().backgroundColor = UIColor.whiteColor()
+        DropDown.appearance().selectionBackgroundColor = UIColor.lightGrayColor()
+    }
+    
     func loadData(jsonFilePath: String) -> JSON {
         // Load GeoJSON file or create a new one
         // Check if file already exist
@@ -54,7 +64,9 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
             jsonLibrary = JSON(data: JSON_Data)
         } else {
             // File Not Avaliable, create new library
-            jsonLibrary = JSON(["type": "FeatureCollection", "features": []])
+            jsonLibrary = JSON(["type": "FeatureCollection",
+                "features": [],
+                "properties": [:]])
         }
         
         return jsonLibrary
@@ -72,9 +84,19 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
     func displayDropDown(optionName: String, sender: UIButton) {
         dropDown.hide()
         
+        if optionName == "Unknown" {
+            dropDown.dataSource = ["Unknow Option"]
+            dropDown.selectionAction = { (index: Int, item: String) in
+                return
+            }
+            
+            dropDown.show()
+            return
+        }
+        
         let assetJSON = loadAssetJSON("Options_\(optionName)")
-        var displayKeySet: [String] = []
-        var dataKeySet: [String] = []
+        var displayKeySet: [String] = ["Unknown"]
+        var dataKeySet: [String] = ["unknown"]
         
         for (displayKey, dataKey) in assetJSON {
             displayKeySet.append(displayKey)
@@ -82,10 +104,17 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         }
         
         dropDown.dataSource = displayKeySet
-        
+        dropDown.direction = .Top
+        dropDown.bottomOffset = CGPoint(x: 0, y: -(dropDown.anchorView as! UIView).bounds.height)
+
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             sender.setTitle("\(optionName): \(item)", forState: .Normal)
-            self.savedProperties[optionName.lowercaseString] = dataKeySet[index]
+            if item == "Unknown" {
+                self.savedProperties[optionName.lowercaseString] = nil
+            } else {
+                self.savedProperties[optionName.lowercaseString] = dataKeySet[index]
+            }
+            
             print("Current Saved Options: \(self.savedProperties)")
         }
         

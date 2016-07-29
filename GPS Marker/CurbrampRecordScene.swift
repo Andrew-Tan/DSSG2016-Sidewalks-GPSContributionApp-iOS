@@ -24,6 +24,9 @@ class CurbrampRecordScene: RecordScene {
     var curbramp: CLLocation?
     var curbrampDroppedPin : MKPointAnnotation?
     
+    // Drop down view
+    @IBOutlet weak var dropDownView: UIView!
+    
     // File System
     let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
     var curbrampJSONLibrary: JSON?
@@ -47,6 +50,9 @@ class CurbrampRecordScene: RecordScene {
         
         // Load GeoJSON file or create a new one
         self.curbrampJSONLibrary = loadData(curbrampFilePath)
+        
+        // Drop down view
+        dropDown.anchorView = self.dropDownView
     }
     
     // MARK: -Action

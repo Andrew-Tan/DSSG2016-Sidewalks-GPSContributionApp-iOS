@@ -30,7 +30,7 @@ class LineStringRecordScene: RecordScene {
     @IBOutlet weak var dropDownView: UIView!
     
     // File System
-    var lineFilePath = ""
+    var lineFilePath: String { get { return "" } }
     var lineJSONLibrary: JSON?
     
     override func viewDidLoad() {
@@ -48,9 +48,6 @@ class LineStringRecordScene: RecordScene {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Load GeoJSON file
-        self.lineJSONLibrary = loadData(lineFilePath)
         
         dropDown.anchorView = self.dropDownView
     }
@@ -204,7 +201,8 @@ class LineStringRecordScene: RecordScene {
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "LineString",
                     "coordinates": [[startCoordinate.latitude, startCoordinate.longitude],
-                        [endCoordinate.latitude, endCoordinate.longitude]]]]]
+                                    [endCoordinate.latitude, endCoordinate.longitude]]],
+                "properties": self.savedProperties]]
             
             // Concatenate the new entry with old entries
             lineJSONLibrary!["features"] = JSON(lineJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
@@ -219,6 +217,7 @@ class LineStringRecordScene: RecordScene {
                 saveSuccess = false
             }
         } else {
+            print("Line JSON library is nil")
             saveSuccess = false
         }
         
