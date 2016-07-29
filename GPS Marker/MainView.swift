@@ -168,31 +168,44 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         if let header_Data = NSData(contentsOfFile: userCredentialFilePath) {
             let headerJSON = JSON(data: header_Data)
             
-            if let curbramp_Data = NSData(contentsOfFile: curbrampFilePath) {
-                let curbramp_JSON = addHeader(JSON(data: curbramp_Data), headerJSON: headerJSON)
+            let uploadCollection = ["Sidewalk": sidewalkFilePath, "Curb Ramp": curbrampFilePath, "Crossing": crossingFilePath]
+            var errItem: [String] = []
+            for (name, path) in uploadCollection {
                 
-                print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
-                
-                Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 100)
+                if let path_Data = NSData(contentsOfFile: path) {
+                    let path_JSON = addHeader(JSON(data: path_Data), headerJSON: headerJSON)
+                    
+                    // print("Data to be uploaded \(name):\n \(path_JSON.description)")
+                    
+                    Alamofire.request(.POST, serverURL, parameters: path_JSON.dictionaryObject, encoding: .JSON)
+                        .validate()
+                        .responseJSON { response in
+                            switch response.result {
+                            case .Success:
+                                var mask = 000
+                                if name == "Sidewalk" {
+                                    mask = 010
+                                } else if name == "Curb Ramp" {
+                                    mask = 100
+                                } else if name == "Crossing" {
+                                    mask = 001
+                                } else {
+                                    mask = 000
+                                }
+                                self.invalidateCache(false, removeMask: mask)
+                            case .Failure(let error):
+                                self.displayMessage("Upload Error", message: "\(name) failed to be uploaded")
+                                errItem.append(name)
+                                NSLog(error.localizedDescription)
+                            }
+                    }
+                }
             }
             
-            if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
-                let sidewalk_JSON = addHeader(JSON(data: sidewalk_Data), headerJSON: headerJSON)
-                
-                print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
-                
-                Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 010)
-            }
-            
-            if let crossing_Data = NSData(contentsOfFile: crossingFilePath) {
-                let crossing_JSON = addHeader(JSON(data: crossing_Data), headerJSON: headerJSON)
-                
-                print("Data to be uploaded CROSSING:\n \(crossing_JSON.dictionaryObject)")
-                
-                Alamofire.request(.POST, serverURL, parameters: crossing_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 001)
+            if errItem.count > 0 {
+                displayMessage("ERROR", message: "\(errItem.description) failed to be uploaded")
+            } else {
+                displayMessage("SUCCESS", message: "Record Uploaded")
             }
         } else {
             let alertController = UIAlertController(
