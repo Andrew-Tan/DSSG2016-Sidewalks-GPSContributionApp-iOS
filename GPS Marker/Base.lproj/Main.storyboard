@@ -119,11 +119,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-kS-8wP">
-                                <rect key="frame" x="476" y="570" width="124" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="124" id="LaY-Ab-cTs"/>
-                                </constraints>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOV-kS-8wP">
+                                <rect key="frame" x="456" y="570" width="124" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Clear Cache"/>
                                 <connections>
@@ -136,13 +133,12 @@
                             <constraint firstItem="Ad7-r3-qVs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="086-qX-Arn"/>
                             <constraint firstItem="N0m-bI-nwO" firstAttribute="top" secondItem="tNg-Fj-ILi" secondAttribute="top" id="HE2-y0-78g"/>
                             <constraint firstItem="N0m-bI-nwO" firstAttribute="centerX" secondItem="tNg-Fj-ILi" secondAttribute="centerX" id="Jfy-xR-6SB"/>
-                            <constraint firstAttribute="trailing" secondItem="EOV-kS-8wP" secondAttribute="trailing" id="OL1-xF-tS2"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="506" id="QlA-sx-v8J"/>
+                            <constraint firstItem="EOV-kS-8wP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="SXM-4s-8er"/>
                             <constraint firstItem="hhW-5y-dfd" firstAttribute="top" secondItem="Ad7-r3-qVs" secondAttribute="bottom" constant="8" symbolic="YES" id="VTD-jE-sPS"/>
                             <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Wb1-KL-JUr"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EOV-kS-8wP" secondAttribute="bottom" id="eLQ-zr-GBO"/>
                             <constraint firstItem="tNg-Fj-ILi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ecW-VT-nHb"/>
                             <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="hhW-5y-dfd" secondAttribute="leading" id="kLp-Ct-YkS"/>
-                            <constraint firstItem="EOV-kS-8wP" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="pSJ-RY-9hl"/>
                             <constraint firstItem="Ad7-r3-qVs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wCx-mJ-UvK"/>
                         </constraints>
                     </view>

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,15 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OpenSidewalks_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ugT-Yp-SZc">
-                                <rect key="frame" x="20" y="147" width="560" height="306"/>
+                                <rect key="frame" x="0.0" y="130" width="600" height="339"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="LFW-vF-Kgg"/>
-                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="PMz-OQ-3BX"/>
-                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="127" id="XlB-gh-U65"/>
-                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="u68-az-B0N"/>
+                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="BUB-2z-6UY"/>
+                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="110" id="Huf-Vq-d68"/>
+                            <constraint firstAttribute="trailing" secondItem="ugT-Yp-SZc" secondAttribute="trailing" id="gYf-Dd-ECm"/>
+                            <constraint firstItem="ugT-Yp-SZc" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mBG-yd-eca"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OpenSidewalks_Logo" width="875" height="197"/>
+        <image name="OpenSidewalks_Logo" width="849" height="583"/>
     </resources>
 </document>
