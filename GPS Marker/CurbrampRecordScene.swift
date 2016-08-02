@@ -25,6 +25,7 @@ class CurbrampRecordScene: PointRecordScene {
         
         // Load GeoJSON file or create a new one
         self.pointJSONLibrary = loadData(pointFilePath)
+        self.pointJSONLibrary!["properties"]["Type"] = JSON("Curb Ramps")
     }
     
     // MARK: -Action
@@ -35,7 +36,7 @@ class CurbrampRecordScene: PointRecordScene {
         switch (sender.tag) {
         case 50:
             self.title = "Curb Ramp Access"
-            senderTitle = "Access"
+            senderTitle = "Wheelchair Access"
         case 51:
             self.title = "Curb Ramp State"
             senderTitle = "Curb Ramp"

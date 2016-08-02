@@ -60,24 +60,65 @@ class LineStringRecordScene: RecordScene {
     @IBAction func lineRecordStart() {
         // Get current location
         self.lineStart = locationManager.location
-        
-        // Set mapView annotation
-        // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
-        let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: self.lineStart!.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
-        if lineStartDroppedPin != nil {
-            mapView.removeAnnotation(lineStartDroppedPin!)
-            lineStartDroppedPin = nil
+        if lineStart == nil {
+            return
         }
         
-        lineStartDroppedPin = MKPointAnnotation()
-        lineStartDroppedPin!.coordinate = self.lineStart!.coordinate
-        lineStartDroppedPin!.title = "line Start"
-        mapView.addAnnotation(lineStartDroppedPin!)
+        handleDrawPin(mapView, point: lineStart!, status: "start")
+    }
+    
+    private func handleDrawPin(mapView: MKMapView, point: CLLocation, status: String) {
+        // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
         
+        if point.horizontalAccuracy < 11 {
+            if status == "start" {
+                if lineStartDroppedPin != nil {
+                    mapView.removeAnnotation(lineStartDroppedPin!)
+                    lineStartDroppedPin = nil
+                }
+                self.lineStartDroppedPin = self.dropPinOnMap(mapView, locationPoint: point, title: "Start")
+                afterRecordStartClicked()
+            } else if status == "end" {
+                if lineEndDroppedPin != nil {
+                    mapView.removeAnnotation(lineStartDroppedPin!)
+                    lineEndDroppedPin = nil
+                }
+                self.lineEndDroppedPin = self.dropPinOnMap(mapView, locationPoint: point, title: "End")
+                self.afterRecordEndClicked()
+            }
+        } else {
+            let alertController = UIAlertController(
+                title: "Warning",
+                message: "Current horizontal accuracy is \(point.horizontalAccuracy) meters, which is not accurate enough, do you want to try again?",
+                preferredStyle: .Alert)
+            
+            let dismissAction = UIAlertAction(title: "No, go on!", style: .Default, handler: { (alert: UIAlertAction!) in
+                if status == "start" {
+                    if self.lineStartDroppedPin != nil {
+                        mapView.removeAnnotation(self.lineStartDroppedPin!)
+                        self.lineStartDroppedPin = nil
+                    }
+                    self.lineStartDroppedPin = self.dropPinOnMap(mapView, locationPoint: point, title: "Start")
+                    self.afterRecordStartClicked()
+                } else if status == "end" {
+                    if self.lineEndDroppedPin != nil {
+                        mapView.removeAnnotation(self.lineEndDroppedPin!)
+                        self.lineEndDroppedPin = nil
+                    }
+                    self.lineEndDroppedPin = self.dropPinOnMap(mapView, locationPoint: point, title: "End")
+                    self.afterRecordEndClicked()
+                }
+            })
+            alertController.addAction(dismissAction)
+            
+            let retryAction = UIAlertAction(title: "Yes, retry!", style: .Default, handler: nil)
+            alertController.addAction(retryAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    private func afterRecordStartClicked() {
         // Adjust button visiblities
         startButton.hidden = false
         startButton.enabled = false
@@ -97,27 +138,17 @@ class LineStringRecordScene: RecordScene {
     @IBAction func lineRecordEnd() {
         // Get current location
         self.lineEnd = locationManager.location
+        if lineEnd == nil {
+            return
+        }
         
+        handleDrawPin(mapView, point: lineEnd!, status: "end")
+    }
+    
+    private func afterRecordEndClicked() {
         // Stop map user tracking mode
         mapView.userTrackingMode = .None
         mapView.showsUserLocation = false
-        
-        // Set mapView annotation
-        // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
-        let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: self.lineEnd!.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
-        
-        // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
-        if lineEndDroppedPin != nil {
-            mapView.removeAnnotation(lineEndDroppedPin!)
-            lineEndDroppedPin = nil
-        }
-        
-        lineEndDroppedPin = MKPointAnnotation()
-        lineEndDroppedPin!.coordinate = self.lineEnd!.coordinate
-        lineEndDroppedPin!.title = "line End"
-        mapView.addAnnotation(lineEndDroppedPin!)
         
         if lineStart == nil || lineEnd == nil {
             NSLog("nil value found for line recording scene")

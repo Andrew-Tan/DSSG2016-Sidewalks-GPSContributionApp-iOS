@@ -47,6 +47,12 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         resetAll()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        dropDown.hide()
+    }
+    
     /**
      Configure global options for drop down
     */
@@ -109,13 +115,23 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         }
         
         let assetJSON = loadAssetJSON("Options_\(optionName)")
+        var tempArraytoSort: [String] = []
         var displayKeySet: [String] = ["Unknown"]
         var dataKeySet: [String] = ["unknown"]
         
+        // ----- Sort Dictionary, not EFFICIENT! Should change eventually
         for (displayKey, dataKey) in assetJSON {
-            displayKeySet.append(displayKey)
-            dataKeySet.append(dataKey.string!)
+            tempArraytoSort.append("\(displayKey)?\(dataKey.string!)")
         }
+        
+        let sortedSets = tempArraytoSort.sort() { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
+        
+        for entry in sortedSets {
+            let entryArray = entry.characters.split{$0 == "?"}.map(String.init)
+            displayKeySet.append(entryArray[0])
+            dataKeySet.append(entryArray[1])
+        }
+        // ----- Sotring Ends
         
         dropDown.dataSource = displayKeySet
         dropDown.direction = .Top
@@ -131,6 +147,22 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         }
         
         dropDown.show()
+    }
+    
+    func dropPinOnMap(mapView: MKMapView, locationPoint: CLLocation, title: String="Pin") -> MKPointAnnotation {
+        
+        // Set mapView annotation
+        // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
+        let span = MKCoordinateSpanMake(0.001, 0.001)
+        let region = MKCoordinateRegion(center: locationPoint.coordinate, span: span)
+        mapView.setRegion(region, animated: true)
+        
+        let pointDroppedPin = MKPointAnnotation()
+        pointDroppedPin.coordinate = locationPoint.coordinate
+        pointDroppedPin.title = title
+        mapView.addAnnotation(pointDroppedPin)
+        
+        return pointDroppedPin
     }
     
     /**

@@ -25,6 +25,7 @@ class CrossingRecordScene: LineStringRecordScene {
         
         // Load GeoJSON file or create a new one
         self.lineJSONLibrary = loadData(lineFilePath)
+        self.lineJSONLibrary!["properties"]["Type"] = JSON("Crossings")
     }
     
     // MARK: -Action
@@ -34,19 +35,23 @@ class CrossingRecordScene: LineStringRecordScene {
         
         switch (sender.tag) {
         case 50:
-            self.title = "Crossing Access"
+            self.title = "Crossing Surface"
             senderTitle = "Surface"
         case 51:
-            self.title = "Crossing Surface"
-            senderTitle = "Access"
+            self.title = "Crossing Access"
+            senderTitle = "Wheelchair Access"
             break
         case 52:
             self.title = "Crossing Type"
             senderTitle = "Crossing Type"
             break
         case 53:
-            self.title = "Crossing Curb Ramp"
-            senderTitle = "Curb Ramp"
+            self.title = "Start Curb Ramp"
+            senderTitle = "Start Curb Ramp"
+            break
+        case 54:
+            self.title = "End Curb Ramp"
+            senderTitle = "End Curb Ramp"
             break
         default:
             break

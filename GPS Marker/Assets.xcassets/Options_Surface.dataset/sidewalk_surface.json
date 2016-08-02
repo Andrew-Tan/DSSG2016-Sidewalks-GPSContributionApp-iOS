@@ -1,8 +1,6 @@
 {
 	"Unpaved": "unpaved",
-	"Paved": "paved",
 	"Gravel": "gravel",
-	"Ground": "ground",
-	"Dirt": "dirt",
-	"Concrete": "concrete"
+	"Brick": "brick",
+	"Asphalt": "asphalt"
 }

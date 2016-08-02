@@ -25,6 +25,7 @@ class SidewalkRecordScene: LineStringRecordScene {
         
         // Load GeoJSON file or create a new one
         self.lineJSONLibrary = loadData(lineFilePath)
+        self.lineJSONLibrary!["properties"]["Type"] = JSON("Sidewalks")
     }
     
     // MARK: -Action
@@ -35,7 +36,7 @@ class SidewalkRecordScene: LineStringRecordScene {
         switch (sender.tag) {
         case 50:
             self.title = "Sidewalk Access"
-            senderTitle = "Access"
+            senderTitle = "Wheelchair Access"
         case 51:
             self.title = "Sidewalk Surface"
             senderTitle = "Surface"

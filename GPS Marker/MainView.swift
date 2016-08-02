@@ -129,35 +129,44 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             fileManager = NSFileManager()
         }
         
-        if removeMask % 10 != 0 {
+        var deleteThings = 3
+        
+        if removeMask % (10 as Int) != 0 {
             // The last digit of the mask is not 0
             do {
                 try fileManager!.removeItemAtPath(sidewalkFilePath)
             } catch {
                 // Deleting error handling
+                deleteThings -= 1
             }
         }
         
-        if removeMask / 10 != 0 {
+        if removeMask / (10 as Int) != 0 {
             // The first digit of the mask is not 0
             do {
                 try fileManager!.removeItemAtPath(curbrampFilePath)
             } catch {
                 // Deleting error handling
+                deleteThings -= 1
             }
         }
         
-        if removeMask / 100 != 0 {
+        if removeMask / (100 as Int) != 0 {
             // The first digit of the mask is not 0
             do {
                 try fileManager!.removeItemAtPath(crossingFilePath)
             } catch {
                 // Deleting error handling
+                deleteThings -= 1
             }
         }
         
         if displayMsg {
-            displayMessage("SUCCESS", message: "Cache is deleted")
+            if deleteThings > 0 {
+                displayMessage("SUCCESS", message: "Cache is deleted")
+            } else {
+                displayMessage("Empty", message: "Nothing to delete")
+            }
         }
     }
     
@@ -165,12 +174,21 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      Upload all recorded data to the cloud
      */
     func uploadData() {
+        // Lazy Initialization
+        if fileManager == nil {
+            fileManager = NSFileManager()
+        }
+        
         if let header_Data = NSData(contentsOfFile: userCredentialFilePath) {
             let headerJSON = JSON(data: header_Data)
             
             let uploadCollection = ["Sidewalk": sidewalkFilePath, "Curb Ramp": curbrampFilePath, "Crossing": crossingFilePath]
             var errItem: [String] = []
             for (name, path) in uploadCollection {
+                
+                if !(fileManager!.fileExistsAtPath(path)) {
+                    continue
+                }
                 
                 if let path_Data = NSData(contentsOfFile: path) {
                     let path_JSON = addHeader(JSON(data: path_Data), headerJSON: headerJSON)
@@ -182,19 +200,8 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                         .responseJSON { response in
                             switch response.result {
                             case .Success:
-                                var mask = 000
-                                if name == "Sidewalk" {
-                                    mask = 010
-                                } else if name == "Curb Ramp" {
-                                    mask = 100
-                                } else if name == "Crossing" {
-                                    mask = 001
-                                } else {
-                                    mask = 000
-                                }
-                                self.invalidateCache(false, removeMask: mask)
+                                print("HTTP Request Success!")
                             case .Failure(let error):
-                                self.displayMessage("Upload Error", message: "\(name) failed to be uploaded")
                                 errItem.append(name)
                                 NSLog(error.localizedDescription)
                             }
@@ -205,7 +212,8 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             if errItem.count > 0 {
                 displayMessage("ERROR", message: "\(errItem.description) failed to be uploaded")
             } else {
-                displayMessage("SUCCESS", message: "Record Uploaded")
+                displayMessage("SUCCESS", message: "Record uploaded, thank you for your contribution!")
+                invalidateCache(false, removeMask: 111)
             }
         } else {
             let alertController = UIAlertController(
@@ -261,7 +269,6 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             activityIndicator.startAnimating()
             uploadData()
             activityIndicator.stopAnimating()
-            displayMessage("SUCCESS", message: "Recordings are uploaded")
             break
         case 4:
             // Clear Cache get clicked

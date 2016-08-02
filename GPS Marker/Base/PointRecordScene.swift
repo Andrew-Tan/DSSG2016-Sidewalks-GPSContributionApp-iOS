@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 import SwiftyJSON
 
@@ -59,12 +58,9 @@ class PointRecordScene: RecordScene {
     @IBAction func recordPoint() {
         // Get current location
         point = locationManager.location
-        
-        // Set mapView annotation
-        // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
-        let span = MKCoordinateSpanMake(0.001, 0.001)
-        let region = MKCoordinateRegion(center: point!.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+        if point == nil {
+            return
+        }
         
         // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
         if pointDroppedPin != nil {
@@ -72,11 +68,29 @@ class PointRecordScene: RecordScene {
             pointDroppedPin = nil
         }
         
-        pointDroppedPin = MKPointAnnotation()
-        pointDroppedPin!.coordinate = point!.coordinate
-        pointDroppedPin!.title = "Curb Ramp"
-        mapView.addAnnotation(pointDroppedPin!)
-        
+        if point!.horizontalAccuracy < 11 {
+            pointDroppedPin = self.dropPinOnMap(mapView, locationPoint: self.point!, title: "Curb Ramp")
+            afterRecordPointClicked()
+        } else {
+            let alertController = UIAlertController(
+                title: "Warning",
+                message: "Current horizontal accuracy is \(point!.horizontalAccuracy) meters, which is not accurate enough, do you want to try again?",
+                preferredStyle: .Alert)
+            
+            let dismissAction = UIAlertAction(title: "No, go on!", style: .Default, handler: { (alert: UIAlertAction!) in
+                self.pointDroppedPin = self.dropPinOnMap(self.mapView, locationPoint: self.point!, title: "Curb Ramp")
+                self.afterRecordPointClicked()
+            })
+            alertController.addAction(dismissAction)
+            
+            let retryAction = UIAlertAction(title: "Yes, retry!", style: .Default, handler: nil)
+            alertController.addAction(retryAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func afterRecordPointClicked() {
         // Adjust button visiblities
         labelpoint.hidden = false
         labelpoint.enabled = false
@@ -111,7 +125,8 @@ class PointRecordScene: RecordScene {
             // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "Point",
-                    "coordinates": [pointCoordinate.latitude, pointCoordinate.longitude]]]]
+                    "coordinates": [pointCoordinate.latitude, pointCoordinate.longitude]],
+                "properties": self.savedProperties]]
             
             // Concatenate the new entry with old entries
             pointJSONLibrary!["features"] = JSON(pointJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
