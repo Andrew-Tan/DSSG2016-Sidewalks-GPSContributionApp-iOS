@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89A2BAD81D24347E00661533"
-               BuildableName = "GPS Marker.app"
-               BlueprintName = "GPS Marker"
-               ReferencedContainer = "container:GPS Marker.xcodeproj">
+               BuildableName = "Open Sidewalks iOS.app"
+               BlueprintName = "Open Sidewalks iOS"
+               ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,21 +33,12 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89A2BAEC1D24347E00661533"
-               BuildableName = "GPS MarkerTests.xctest"
-               BlueprintName = "GPS MarkerTests"
-               ReferencedContainer = "container:GPS Marker.xcodeproj">
+               BuildableName = "Open Sidewalks iOS.xctest"
+               BlueprintName = "Open Sidewalks iOSTests"
+               ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "89A2BAD81D24347E00661533"
-            BuildableName = "GPS Marker.app"
-            BlueprintName = "GPS Marker"
-            ReferencedContainer = "container:GPS Marker.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -66,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89A2BAD81D24347E00661533"
-            BuildableName = "GPS Marker.app"
-            BlueprintName = "GPS Marker"
-            ReferencedContainer = "container:GPS Marker.xcodeproj">
+            BuildableName = "Open Sidewalks iOS.app"
+            BlueprintName = "Open Sidewalks iOS"
+            ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,22 +71,22 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89A2BAD81D24347E00661533"
-            BuildableName = "GPS Marker.app"
-            BlueprintName = "GPS Marker"
-            ReferencedContainer = "container:GPS Marker.xcodeproj">
+            BuildableName = "Open Sidewalks iOS.app"
+            BlueprintName = "Open Sidewalks iOS"
+            ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Open Sidewalks iOS"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

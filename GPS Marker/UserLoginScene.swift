@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class UserLoginScene: UIViewController {
+class UserLoginScene: UIViewController, UITextFieldDelegate {
     
     var fileManager = NSFileManager()
     let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
@@ -23,6 +23,17 @@ class UserLoginScene: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "User Credential"
+        
+        // Set Delegate
+        userID.delegate = self
+        emailAddress.delegate = self
+        
+        // Define Save Button on the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveCredential))
+        
+        // Set UITextField keyboard type
+        userID.keyboardType = .ASCIICapable
+        emailAddress.keyboardType = .EmailAddress
         
         // Load User Credential From File & Check if file already exist
         if let JSON_Data = NSData(contentsOfFile: userCredentialFilePath) {
@@ -94,6 +105,15 @@ class UserLoginScene: UIViewController {
         credential["Platform"] = "iOS"
         
         displayMessage("Success", message: "Credential Saved")
-        print("\(userCredentialJSON)")
+    }
+    
+    //MARK:- MapViewDelegate methods
+    
+    /**
+     Define action when return is hit while editing a text field
+    */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

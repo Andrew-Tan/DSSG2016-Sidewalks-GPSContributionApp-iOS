@@ -36,6 +36,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     var fileManager: NSFileManager?
     let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
     let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
+    let crossingFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/crossing-collection.json"
     let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
     
     // Network Temprary Server
@@ -46,13 +47,22 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "GPS Marker"
-        navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+        self.title = "Open Sidewalks"
+        // navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
+        // navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
         // Location manager configuration
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
+        
+        // Define Buttons on the navigation bar
+        let loginButton = UIBarButtonItem(title: "Login", style: .Plain, target: self, action: #selector(buttonClicked))
+        loginButton.tag = 5
+        let uploadButton = UIBarButtonItem(title: "Upload", style: .Plain, target: self, action: #selector(buttonClicked))
+        uploadButton.tag = 3
+        navigationItem.leftBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem = uploadButton
+        
     }
     
     /**
@@ -107,10 +117,11 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      
      - parameter removeMask: a mask which indicate which file to remove
      FOR NOW:
-     00: Remove Nothing
-     01: Remove sidewalk file ONLY
-     10: Remove curb ramp file ONLY
-     11: Remove Everything
+     000: Remove Nothing
+     001: Remove crossing file ONLY
+     010: Remove sidewalk file ONLY
+     100: Remove curb ramp file ONLY
+     111: Remove Everything
      */
     func invalidateCache(displayMsg: Bool, removeMask: Int) {
         // Lazy Initialization
@@ -118,26 +129,44 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             fileManager = NSFileManager()
         }
         
-        if removeMask % 10 != 0 {
+        var deleteThings = 3
+        
+        if removeMask % (10 as Int) != 0 {
             // The last digit of the mask is not 0
             do {
                 try fileManager!.removeItemAtPath(sidewalkFilePath)
             } catch {
                 // Deleting error handling
+                deleteThings -= 1
             }
         }
         
-        if removeMask / 10 != 0 {
+        if removeMask / (10 as Int) != 0 {
             // The first digit of the mask is not 0
             do {
                 try fileManager!.removeItemAtPath(curbrampFilePath)
             } catch {
                 // Deleting error handling
+                deleteThings -= 1
+            }
+        }
+        
+        if removeMask / (100 as Int) != 0 {
+            // The first digit of the mask is not 0
+            do {
+                try fileManager!.removeItemAtPath(crossingFilePath)
+            } catch {
+                // Deleting error handling
+                deleteThings -= 1
             }
         }
         
         if displayMsg {
-            displayMessage("SUCCESS", message: "Cache is deleted")
+            if deleteThings > 0 {
+                displayMessage("SUCCESS", message: "Cache is deleted")
+            } else {
+                displayMessage("Empty", message: "Nothing to delete")
+            }
         }
     }
     
@@ -145,25 +174,46 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      Upload all recorded data to the cloud
      */
     func uploadData() {
+        // Lazy Initialization
+        if fileManager == nil {
+            fileManager = NSFileManager()
+        }
+        
         if let header_Data = NSData(contentsOfFile: userCredentialFilePath) {
             let headerJSON = JSON(data: header_Data)
             
-            if let curbramp_Data = NSData(contentsOfFile: curbrampFilePath) {
-                let curbramp_JSON = addHeader(JSON(data: curbramp_Data), headerJSON: headerJSON)
+            let uploadCollection = ["Sidewalk": sidewalkFilePath, "Curb Ramp": curbrampFilePath, "Crossing": crossingFilePath]
+            var errItem: [String] = []
+            for (name, path) in uploadCollection {
                 
-                print("Data to be uploaded CURB RAMP:\n \(curbramp_JSON.description)")
+                if !(fileManager!.fileExistsAtPath(path)) {
+                    continue
+                }
                 
-                Alamofire.request(.POST, serverURL, parameters: curbramp_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 10)
+                if let path_Data = NSData(contentsOfFile: path) {
+                    let path_JSON = addHeader(JSON(data: path_Data), headerJSON: headerJSON)
+                    
+                    // print("Data to be uploaded \(name):\n \(path_JSON.description)")
+                    
+                    Alamofire.request(.POST, serverURL, parameters: path_JSON.dictionaryObject, encoding: .JSON)
+                        .validate()
+                        .responseJSON { response in
+                            switch response.result {
+                            case .Success:
+                                print("HTTP Request Success!")
+                            case .Failure(let error):
+                                errItem.append(name)
+                                NSLog(error.localizedDescription)
+                            }
+                    }
+                }
             }
             
-            if let sidewalk_Data = NSData(contentsOfFile: sidewalkFilePath) {
-                let sidewalk_JSON = addHeader(JSON(data: sidewalk_Data), headerJSON: headerJSON)
-                
-                print("Data to be uploaded SIDEWALK:\n \(sidewalk_JSON.dictionaryObject)")
-                
-                Alamofire.request(.POST, serverURL, parameters: sidewalk_JSON.dictionaryObject, encoding: .JSON)
-                invalidateCache(false, removeMask: 01)
+            if errItem.count > 0 {
+                displayMessage("ERROR", message: "\(errItem.description) failed to be uploaded")
+            } else {
+                displayMessage("SUCCESS", message: "Record uploaded, thank you for your contribution!")
+                invalidateCache(false, removeMask: 111)
             }
         } else {
             let alertController = UIAlertController(
@@ -187,7 +237,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      */
     func addHeader(targetJSON: JSON, headerJSON: JSON) -> JSON {
         var returnJSON = targetJSON
-        returnJSON["UserInfo"] = headerJSON
+        returnJSON["properties"]["UserInfo"] = headerJSON
         
         return returnJSON
     }
@@ -210,7 +260,8 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             performSegueWithIdentifier("curbrampSceneSegue", sender: sender)
             break
         case 2:
-            displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
+            // displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
+            performSegueWithIdentifier("crossingSceneSegue", sender: sender)
             break
         case 3:
             // Upload Data button get clicked
@@ -218,7 +269,6 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             activityIndicator.startAnimating()
             uploadData()
             activityIndicator.stopAnimating()
-            displayMessage("SUCCESS", message: "Recordings are uploaded")
             break
         case 4:
             // Clear Cache get clicked
@@ -229,7 +279,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                 preferredStyle: .Alert)
             let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
             alertController.addAction(dismissAction)
-            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 11)})
+            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 111)})
             alertController.addAction(confirmAction)
             self.presentViewController(alertController, animated: true, completion: nil)
             break

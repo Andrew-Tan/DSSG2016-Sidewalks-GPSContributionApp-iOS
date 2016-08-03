@@ -21,6 +21,15 @@
 		89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
 		89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */; };
 		89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */; };
+		89CB0C161D49C83600D0F8CF /* RecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C151D49C83600D0F8CF /* RecordScene.swift */; };
+		89CB0C171D49C83600D0F8CF /* RecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C151D49C83600D0F8CF /* RecordScene.swift */; };
+		89CB0C1C1D4AA2E900D0F8CF /* DropDown.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */; };
+		89CB0C1E1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */; };
+		89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */; };
+		89CB0C211D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */; };
+		89CB0C221D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */; };
+		89CB0C241D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
+		89CB0C251D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
 		F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,18 +50,24 @@
 		8950F3F11D2C242200B45FB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		895169971D30241300B6E3A9 /* UserLoginScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginScene.swift; sourceTree = "<group>"; };
 		895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurbrampRecordScene.swift; sourceTree = "<group>"; };
-		89A2BAD91D24347E00661533 /* GPS Marker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPS Marker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Sidewalks iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89A2BADE1D24347E00661533 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		89A2BAE11D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89A2BAE31D24347E00661533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89A2BAE61D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89A2BAE81D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		89A2BAED1D24347E00661533 /* GPS MarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GPS MarkerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Open Sidewalks iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_MarkerTests.swift; sourceTree = "<group>"; };
 		89A2BAF31D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
 		89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		89CB0C151D49C83600D0F8CF /* RecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordScene.swift; path = Base/RecordScene.swift; sourceTree = "<group>"; };
+		89CB0C191D4A9A2C00D0F8CF /* DownPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DownPicker.framework; path = "Pods/../build/Debug-iphoneos/DownPicker/DownPicker.framework"; sourceTree = "<group>"; };
+		89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropDown.framework; path = "Pods/../build/Debug-iphoneos/DropDown/DropDown.framework"; sourceTree = "<group>"; };
+		89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineStringRecordScene.swift; path = Base/LineStringRecordScene.swift; sourceTree = "<group>"; };
+		89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossingRecordScene.swift; sourceTree = "<group>"; };
+		89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointRecordScene.swift; path = Base/PointRecordScene.swift; sourceTree = "<group>"; };
 		F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89CB0C1C1D4AA2E900D0F8CF /* DropDown.framework in Frameworks */,
 				89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */,
 				8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */,
 				F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */,
@@ -89,6 +105,8 @@
 		79FE172555422B935053D1E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89CB0C1B1D4AA2E900D0F8CF /* DropDown.framework */,
+				89CB0C191D4A9A2C00D0F8CF /* DownPicker.framework */,
 				89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */,
 				8950F3F11D2C242200B45FB3 /* Alamofire.framework */,
 				1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */,
@@ -111,8 +129,8 @@
 		89A2BADA1D24347E00661533 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89A2BAD91D24347E00661533 /* GPS Marker.app */,
-				89A2BAED1D24347E00661533 /* GPS MarkerTests.xctest */,
+				89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */,
+				89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,10 +138,12 @@
 		89A2BADB1D24347E00661533 /* GPS Marker */ = {
 			isa = PBXGroup;
 			children = (
+				89CB0C181D49DEB600D0F8CF /* Base */,
 				89A2BADC1D24347E00661533 /* AppDelegate.swift */,
 				89A2BADE1D24347E00661533 /* MainView.swift */,
 				89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */,
 				895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */,
+				89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */,
 				895169971D30241300B6E3A9 /* UserLoginScene.swift */,
 				89A2BAE81D24347E00661533 /* Info.plist */,
 				89A2BAE01D24347E00661533 /* Main.storyboard */,
@@ -142,12 +162,22 @@
 			path = "GPS MarkerTests";
 			sourceTree = "<group>";
 		};
+		89CB0C181D49DEB600D0F8CF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				89CB0C151D49C83600D0F8CF /* RecordScene.swift */,
+				89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */,
+				89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		89A2BAD81D24347E00661533 /* GPS Marker */ = {
+		89A2BAD81D24347E00661533 /* Open Sidewalks iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "GPS Marker" */;
+			buildConfigurationList = 89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOS" */;
 			buildPhases = (
 				00583C95AEF46AE4DAD124B8 /* [CP] Check Pods Manifest.lock */,
 				89A2BAD51D24347E00661533 /* Sources */,
@@ -160,14 +190,14 @@
 			);
 			dependencies = (
 			);
-			name = "GPS Marker";
+			name = "Open Sidewalks iOS";
 			productName = "GPS Marker";
-			productReference = 89A2BAD91D24347E00661533 /* GPS Marker.app */;
+			productReference = 89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		89A2BAEC1D24347E00661533 /* GPS MarkerTests */ = {
+		89A2BAEC1D24347E00661533 /* Open Sidewalks iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "GPS MarkerTests" */;
+			buildConfigurationList = 89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOSTests" */;
 			buildPhases = (
 				89A2BAE91D24347E00661533 /* Sources */,
 				89A2BAEA1D24347E00661533 /* Frameworks */,
@@ -178,9 +208,9 @@
 			dependencies = (
 				89A2BAEF1D24347E00661533 /* PBXTargetDependency */,
 			);
-			name = "GPS MarkerTests";
+			name = "Open Sidewalks iOSTests";
 			productName = "GPS MarkerTests";
-			productReference = 89A2BAED1D24347E00661533 /* GPS MarkerTests.xctest */;
+			productReference = 89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +233,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "GPS Marker" */;
+			buildConfigurationList = 89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "Open Sidewalks iOS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -216,8 +246,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				89A2BAD81D24347E00661533 /* GPS Marker */,
-				89A2BAEC1D24347E00661533 /* GPS MarkerTests */,
+				89A2BAD81D24347E00661533 /* Open Sidewalks iOS */,
+				89A2BAEC1D24347E00661533 /* Open Sidewalks iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -297,10 +327,14 @@
 			files = (
 				89A2BB031D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 				89A2BADF1D24347E00661533 /* MainView.swift in Sources */,
+				89CB0C241D4BF90900D0F8CF /* PointRecordScene.swift in Sources */,
+				89CB0C1E1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
+				89CB0C211D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */,
 				891215E61D26D41500940415 /* README.md in Sources */,
 				895169981D30241300B6E3A9 /* UserLoginScene.swift in Sources */,
 				895C942B1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
 				89A2BADD1D24347E00661533 /* AppDelegate.swift in Sources */,
+				89CB0C161D49C83600D0F8CF /* RecordScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +343,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				895C942C1D272AF30024AF06 /* CurbrampRecordScene.swift in Sources */,
+				89CB0C251D4BF90900D0F8CF /* PointRecordScene.swift in Sources */,
+				89CB0C1F1D4B10E500D0F8CF /* LineStringRecordScene.swift in Sources */,
+				89CB0C171D49C83600D0F8CF /* RecordScene.swift in Sources */,
+				89CB0C221D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */,
 				89A2BAF21D24347E00661533 /* GPS_MarkerTests.swift in Sources */,
 				89A2BB041D248A1F00661533 /* SidewalkRecordScene.swift in Sources */,
 			);
@@ -319,7 +357,7 @@
 /* Begin PBXTargetDependency section */
 		89A2BAEF1D24347E00661533 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 89A2BAD81D24347E00661533 /* GPS Marker */;
+			target = 89A2BAD81D24347E00661533 /* Open Sidewalks iOS */;
 			targetProxy = 89A2BAEE1D24347E00661533 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -435,16 +473,20 @@
 			baseConfigurationReference = 551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DownPicker",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DropDown",
+				);
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Open Sidewalks iOS";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -453,16 +495,20 @@
 			baseConfigurationReference = F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DownPicker",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DropDown",
+				);
 				INFOPLIST_FILE = "GPS Marker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Open Sidewalks iOS";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -473,8 +519,8 @@
 				INFOPLIST_FILE = "GPS MarkerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS Marker.app/GPS Marker";
+				PRODUCT_NAME = "Open Sidewalks iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Open Sidewalks iOS.app/Open Sidewalks iOS";
 			};
 			name = Debug;
 		};
@@ -485,15 +531,15 @@
 				INFOPLIST_FILE = "GPS MarkerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS Marker.app/GPS Marker";
+				PRODUCT_NAME = "Open Sidewalks iOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Open Sidewalks iOS.app/Open Sidewalks iOS";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "GPS Marker" */ = {
+		89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "Open Sidewalks iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAF41D24347E00661533 /* Debug */,
@@ -502,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "GPS Marker" */ = {
+		89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAF71D24347E00661533 /* Debug */,
@@ -511,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "GPS MarkerTests" */ = {
+		89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAFA1D24347E00661533 /* Debug */,
