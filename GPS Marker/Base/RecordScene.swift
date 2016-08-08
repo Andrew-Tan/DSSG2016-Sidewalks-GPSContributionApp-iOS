@@ -221,7 +221,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         
         let alertController = UIAlertController(
             title: "Background Location Access Disabled",
-            message: "In order to record location information you reported, please open this app's settings and set location access to 'Always'.",
+            message: "In order to record location information you reported, please open this app's settings and set location access.",
             preferredStyle: .Alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -239,7 +239,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
     
     func locationServiceNotDetermined(manager: CLLocationManager) {
         saveButton?.enabled = false
-        manager.requestAlwaysAuthorization()
+        manager.requestWhenInUseAuthorization()
     }
     
     /**

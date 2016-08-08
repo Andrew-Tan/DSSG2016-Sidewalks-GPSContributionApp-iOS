@@ -26,7 +26,7 @@
         <!--Main View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainView" customModule="Open_Sidewalks_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainView" customModule="OpenSidewalks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -164,7 +164,7 @@
         <!--User Login Scene-->
         <scene sceneID="Old-1T-63s">
             <objects>
-                <viewController id="pk8-r2-huZ" customClass="UserLoginScene" customModule="Open_Sidewalks_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pk8-r2-huZ" customClass="UserLoginScene" customModule="OpenSidewalks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Amc-hd-6Cw"/>
                         <viewControllerLayoutGuide type="bottom" id="7rp-z4-csQ"/>
@@ -274,7 +274,7 @@
         <!--Sidewalk Record Scene-->
         <scene sceneID="0s9-zn-Gmz">
             <objects>
-                <viewController id="WNx-Pj-A0W" customClass="SidewalkRecordScene" customModule="Open_Sidewalks_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WNx-Pj-A0W" customClass="SidewalkRecordScene" customModule="OpenSidewalks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bZL-iE-zyT"/>
                         <viewControllerLayoutGuide type="bottom" id="Lo1-2t-Srs"/>
@@ -419,7 +419,7 @@
         <!--Crossing Record Scene-->
         <scene sceneID="Fk5-XM-1Ly">
             <objects>
-                <viewController id="hZ6-ff-tXF" customClass="CrossingRecordScene" customModule="Open_Sidewalks_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hZ6-ff-tXF" customClass="CrossingRecordScene" customModule="OpenSidewalks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JWx-jW-IRO"/>
                         <viewControllerLayoutGuide type="bottom" id="Z4P-zr-dAd"/>
@@ -559,7 +559,7 @@
         <!--Curbramp Record Scene-->
         <scene sceneID="cBS-M3-dq4">
             <objects>
-                <viewController id="Eum-Ba-Xez" customClass="CurbrampRecordScene" customModule="Open_Sidewalks_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Eum-Ba-Xez" customClass="CurbrampRecordScene" customModule="OpenSidewalks" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9Nj-zY-uRh"/>
                         <viewControllerLayoutGuide type="bottom" id="lge-Xf-nxo"/>
