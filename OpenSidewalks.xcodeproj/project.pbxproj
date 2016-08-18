@@ -50,14 +50,14 @@
 		8950F3F11D2C242200B45FB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		895169971D30241300B6E3A9 /* UserLoginScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginScene.swift; sourceTree = "<group>"; };
 		895C942A1D272AF30024AF06 /* CurbrampRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurbrampRecordScene.swift; sourceTree = "<group>"; };
-		89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Sidewalks iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89A2BAD91D24347E00661533 /* OpenSidewalks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSidewalks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BADC1D24347E00661533 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89A2BADE1D24347E00661533 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		89A2BAE11D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89A2BAE31D24347E00661533 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89A2BAE61D24347E00661533 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89A2BAE81D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Open Sidewalks iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		89A2BAED1D24347E00661533 /* OpenSidewalks.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenSidewalks.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPS_MarkerTests.swift; sourceTree = "<group>"; };
 		89A2BAF31D24347E00661533 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89A2BB021D248A1F00661533 /* SidewalkRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidewalkRecordScene.swift; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 		89A2BADA1D24347E00661533 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */,
-				89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */,
+				89A2BAD91D24347E00661533 /* OpenSidewalks.app */,
+				89A2BAED1D24347E00661533 /* OpenSidewalks.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,9 +175,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		89A2BAD81D24347E00661533 /* Open Sidewalks iOS */ = {
+		89A2BAD81D24347E00661533 /* OpenSidewalks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOS" */;
+			buildConfigurationList = 89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "OpenSidewalks" */;
 			buildPhases = (
 				00583C95AEF46AE4DAD124B8 /* [CP] Check Pods Manifest.lock */,
 				89A2BAD51D24347E00661533 /* Sources */,
@@ -190,14 +190,14 @@
 			);
 			dependencies = (
 			);
-			name = "Open Sidewalks iOS";
+			name = OpenSidewalks;
 			productName = "GPS Marker";
-			productReference = 89A2BAD91D24347E00661533 /* Open Sidewalks iOS.app */;
+			productReference = 89A2BAD91D24347E00661533 /* OpenSidewalks.app */;
 			productType = "com.apple.product-type.application";
 		};
-		89A2BAEC1D24347E00661533 /* Open Sidewalks iOSTests */ = {
+		89A2BAEC1D24347E00661533 /* OpenSidewalksTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOSTests" */;
+			buildConfigurationList = 89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "OpenSidewalksTests" */;
 			buildPhases = (
 				89A2BAE91D24347E00661533 /* Sources */,
 				89A2BAEA1D24347E00661533 /* Frameworks */,
@@ -208,9 +208,9 @@
 			dependencies = (
 				89A2BAEF1D24347E00661533 /* PBXTargetDependency */,
 			);
-			name = "Open Sidewalks iOSTests";
+			name = OpenSidewalksTests;
 			productName = "GPS MarkerTests";
-			productReference = 89A2BAED1D24347E00661533 /* Open Sidewalks iOS.xctest */;
+			productReference = 89A2BAED1D24347E00661533 /* OpenSidewalks.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -233,7 +233,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "Open Sidewalks iOS" */;
+			buildConfigurationList = 89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "OpenSidewalks" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -246,8 +246,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				89A2BAD81D24347E00661533 /* Open Sidewalks iOS */,
-				89A2BAEC1D24347E00661533 /* Open Sidewalks iOSTests */,
+				89A2BAD81D24347E00661533 /* OpenSidewalks */,
+				89A2BAEC1D24347E00661533 /* OpenSidewalksTests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,7 +357,7 @@
 /* Begin PBXTargetDependency section */
 		89A2BAEF1D24347E00661533 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 89A2BAD81D24347E00661533 /* Open Sidewalks iOS */;
+			target = 89A2BAD81D24347E00661533 /* OpenSidewalks */;
 			targetProxy = 89A2BAEE1D24347E00661533 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -484,7 +484,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
-				PRODUCT_NAME = "Open Sidewalks iOS";
+				PRODUCT_NAME = OpenSidewalks;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -506,7 +506,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
-				PRODUCT_NAME = "Open Sidewalks iOS";
+				PRODUCT_NAME = OpenSidewalks;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -519,8 +519,8 @@
 				INFOPLIST_FILE = "GPS MarkerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
-				PRODUCT_NAME = "Open Sidewalks iOS";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Open Sidewalks iOS.app/Open Sidewalks iOS";
+				PRODUCT_NAME = OpenSidewalks;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenSidewalks.app/OpenSidewalks";
 			};
 			name = Debug;
 		};
@@ -531,15 +531,15 @@
 				INFOPLIST_FILE = "GPS MarkerTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
-				PRODUCT_NAME = "Open Sidewalks iOS";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Open Sidewalks iOS.app/Open Sidewalks iOS";
+				PRODUCT_NAME = OpenSidewalks;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenSidewalks.app/OpenSidewalks";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "Open Sidewalks iOS" */ = {
+		89A2BAD41D24347D00661533 /* Build configuration list for PBXProject "OpenSidewalks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAF41D24347E00661533 /* Debug */,
@@ -548,7 +548,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOS" */ = {
+		89A2BAF61D24347E00661533 /* Build configuration list for PBXNativeTarget "OpenSidewalks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAF71D24347E00661533 /* Debug */,
@@ -557,7 +557,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "Open Sidewalks iOSTests" */ = {
+		89A2BAF91D24347E00661533 /* Build configuration list for PBXNativeTarget "OpenSidewalksTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89A2BAFA1D24347E00661533 /* Debug */,

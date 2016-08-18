@@ -125,7 +125,7 @@ class PointRecordScene: RecordScene {
             // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
                 "geometry": ["type": "Point",
-                    "coordinates": [pointCoordinate.latitude, pointCoordinate.longitude]],
+                    "coordinates": [pointCoordinate.longitude, pointCoordinate.latitude]],
                 "properties": self.savedProperties]]
             
             // Concatenate the new entry with old entries

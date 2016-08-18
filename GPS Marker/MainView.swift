@@ -47,7 +47,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Open Sidewalks"
+        self.title = "OpenSidewalks"
         // navigationController?.navigationBar.barTintColor = UIColor.yellowColor()
         // navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
         
@@ -307,12 +307,12 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             buttonStack.hidden = false
         case .NotDetermined:
             buttonStack.hidden = true
-            manager.requestAlwaysAuthorization()
+            manager.requestWhenInUseAuthorization()
         case .Restricted, .Denied:
             buttonStack.hidden = true
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
-                message: "In order to record location information you reported, please open this app's settings and set location access to 'Always'.",
+                message: "In order to record location information you reported, please open this app's settings and set location access.",
                 preferredStyle: .Alert)
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)

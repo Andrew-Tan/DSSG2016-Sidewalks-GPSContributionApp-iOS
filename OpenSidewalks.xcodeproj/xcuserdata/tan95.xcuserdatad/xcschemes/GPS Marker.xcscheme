@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89A2BAD81D24347E00661533"
-               BuildableName = "Open Sidewalks iOS.app"
-               BlueprintName = "Open Sidewalks iOS"
-               ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
+               BuildableName = "OpenSidewalks.app"
+               BlueprintName = "OpenSidewalks"
+               ReferencedContainer = "container:OpenSidewalks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89A2BAEC1D24347E00661533"
-               BuildableName = "Open Sidewalks iOS.xctest"
-               BlueprintName = "Open Sidewalks iOSTests"
-               ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
+               BuildableName = "OpenSidewalks.xctest"
+               BlueprintName = "OpenSidewalksTests"
+               ReferencedContainer = "container:OpenSidewalks.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89A2BAD81D24347E00661533"
-            BuildableName = "Open Sidewalks iOS.app"
-            BlueprintName = "Open Sidewalks iOS"
-            ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
+            BuildableName = "OpenSidewalks.app"
+            BlueprintName = "OpenSidewalks"
+            ReferencedContainer = "container:OpenSidewalks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89A2BAD81D24347E00661533"
-            BuildableName = "Open Sidewalks iOS.app"
-            BlueprintName = "Open Sidewalks iOS"
-            ReferencedContainer = "container:Open Sidewalks iOS.xcodeproj">
+            BuildableName = "OpenSidewalks.app"
+            BlueprintName = "OpenSidewalks"
+            ReferencedContainer = "container:OpenSidewalks.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
