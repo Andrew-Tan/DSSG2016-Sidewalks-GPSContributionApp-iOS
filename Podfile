@@ -2,8 +2,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-target 'GPS Marker' do
-    pod 'Alamofire', '~> 3.4'
+target 'OpenSidewalks' do
+    pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON'
     pod 'DropDown'
 end

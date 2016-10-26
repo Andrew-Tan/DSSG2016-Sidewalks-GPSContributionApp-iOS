@@ -30,7 +30,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         locationManager = CLLocationManager()
         
         // Define Save Button on the navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveRecording))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveRecording))
         saveButton = navigationItem.rightBarButtonItem
         
         // Setting global configuration for drop down menu
@@ -47,7 +47,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         resetAll()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         dropDown.hide()
@@ -57,25 +57,31 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      Configure global options for drop down
     */
     func configureDropDown() {
-        DropDown.appearance().textColor = UIColor.blackColor()
-        DropDown.appearance().textFont = UIFont.systemFontOfSize(15)
-        DropDown.appearance().backgroundColor = UIColor.whiteColor()
-        DropDown.appearance().selectionBackgroundColor = UIColor.lightGrayColor()
+        DropDown.appearance().textColor = UIColor.black
+        DropDown.appearance().textFont = UIFont.systemFont(ofSize: 15)
+        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
     }
     
-    func loadData(jsonFilePath: String) -> JSON {
+    func loadData(_ jsonFilePath: String) -> JSON {
         // Load GeoJSON file or create a new one
         // Check if file already exist
         var jsonLibrary: JSON
-        
-        if let JSON_Data = NSData(contentsOfFile: jsonFilePath) {
-            // File Avaliable, fetch from document
-            jsonLibrary = JSON(data: JSON_Data)
+        if let url_path = URL(string: jsonFilePath) {
+            do {
+                let JSON_Data : Data = try Data(contentsOf: url_path, options: Data.ReadingOptions.uncachedRead)
+                
+                // File Avaliable, fetch from document
+                jsonLibrary = JSON(data: JSON_Data)
+            } catch {
+                // File Not Avaliable, create new library
+                jsonLibrary = JSON(["type": "FeatureCollection",
+                                    "features": [],
+                                    "properties": [:]])
+            }
         } else {
-            // File Not Avaliable, create new library
-            jsonLibrary = JSON(["type": "FeatureCollection",
-                "features": [],
-                "properties": [:]])
+            print ("json file path cannot be resolved")
+            return nil;
         }
         
         return jsonLibrary
@@ -86,7 +92,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      
      - param assetName: The name of the asset
      */
-    private func loadAssetJSON(assetName: String) -> JSON {
+    fileprivate func loadAssetJSON(_ assetName: String) -> JSON {
         if let asset = NSDataAsset(name: assetName) {
             let data = asset.data
             return JSON(data: data)
@@ -101,7 +107,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      - param optionName: The name of the option, should have an entry in the format "Options_XXX" in Assets.xcassets
      - param sender: The button who activate this drop down
     */
-    func displayDropDown(optionName: String, sender: UIButton) {
+    func displayDropDown(_ optionName: String, sender: UIButton) {
         dropDown.hide()
         
         if optionName == "Unknown" {
@@ -124,7 +130,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
             tempArraytoSort.append("\(displayKey)?\(dataKey.string!)")
         }
         
-        let sortedSets = tempArraytoSort.sort() { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
+        let sortedSets = tempArraytoSort.sorted() { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
         
         for entry in sortedSets {
             let entryArray = entry.characters.split{$0 == "?"}.map(String.init)
@@ -134,22 +140,22 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         // ----- Sotring Ends
         
         dropDown.dataSource = displayKeySet
-        dropDown.direction = .Top
+        dropDown.direction = .top
         dropDown.bottomOffset = CGPoint(x: 0, y: -(dropDown.anchorView as! UIView).bounds.height)
 
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            sender.setTitle("\(optionName): \(item)", forState: .Normal)
+            sender.setTitle("\(optionName): \(item)", for: .normal)
             if item == "Unknown" {
-                self.savedProperties[optionName.lowercaseString] = nil
+                self.savedProperties[optionName.lowercased()] = nil
             } else {
-                self.savedProperties[optionName.lowercaseString] = dataKeySet[index]
+                self.savedProperties[optionName.lowercased()] = dataKeySet[index]
             }
         }
         
         dropDown.show()
     }
     
-    func dropPinOnMap(mapView: MKMapView, locationPoint: CLLocation, title: String="Pin") -> MKPointAnnotation {
+    func dropPinOnMap(_ mapView: MKMapView, locationPoint: CLLocation, title: String="Pin") -> MKPointAnnotation {
         
         // Set mapView annotation
         // The span value is made relative small, so a big portion of London is visible. The MKCoordinateRegion method defines the visible region, it is set with the setRegion method.
@@ -169,16 +175,16 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      Reset all scene attributes and visible items to their initial state
      */
     func resetAll() {
-        saveButton?.enabled = false
+        saveButton?.isEnabled = false
     }
     
     /**
      Reset a map view to its initial state
     */
-    func resetMap(mapView: MKMapView) {
+    func resetMap(_ mapView: MKMapView) {
         mapView.removeAnnotations(mapView.annotations)
         mapView.removeOverlays(mapView.overlays)
-        mapView.userTrackingMode = .Follow
+        mapView.userTrackingMode = .follow
         mapView.showsUserLocation = true
     }
     
@@ -190,7 +196,7 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         return
     }
     
-    func showSaveSuccessAlert(success: Bool) {
+    func showSaveSuccessAlert(_ success: Bool) {
         
         var title: String
         var msg: String
@@ -204,41 +210,41 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
         let alertController = UIAlertController(
             title: title,
             message: msg,
-            preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK:- CLLocationManagerDelegate methods
     
-    func locationServiceEnabled(manager: CLLocationManager) {
+    func locationServiceEnabled(_ manager: CLLocationManager) {
         resetAll()
     }
     
-    func locationServiceDisabled(manager: CLLocationManager) {
-        saveButton?.enabled = false
+    func locationServiceDisabled(_ manager: CLLocationManager) {
+        saveButton?.isEnabled = false
         
         let alertController = UIAlertController(
             title: "Background Location Access Disabled",
             message: "In order to record location information you reported, please open this app's settings and set location access.",
-            preferredStyle: .Alert)
+            preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
-            if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                UIApplication.sharedApplication().openURL(url)
+        let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+            if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.openURL(url)
             }
         }
         alertController.addAction(openAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func locationServiceNotDetermined(manager: CLLocationManager) {
-        saveButton?.enabled = false
+    func locationServiceNotDetermined(_ manager: CLLocationManager) {
+        saveButton?.isEnabled = false
         manager.requestWhenInUseAuthorization()
     }
     
@@ -248,14 +254,14 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
      - parameter manager: the CLLocationManager
      - parameter status: the current status of location authorization
      */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-        case .AuthorizedAlways, .AuthorizedWhenInUse:
+        case .authorizedAlways, .authorizedWhenInUse:
             locationServiceEnabled(manager)
-        case .NotDetermined:
+        case .notDetermined:
             locationServiceNotDetermined(manager)
-        case .Restricted, .Denied:
+        case .restricted, .denied:
             locationServiceDisabled(manager)
         }
     }
@@ -265,10 +271,10 @@ class RecordScene: UIViewController, CLLocationManagerDelegate, MKMapViewDelegat
     /**
      Delegate function which return renderer for overlays in the map
      */
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolyline {
             let polylineRenderer = MKPolylineRenderer(overlay: overlay)
-            polylineRenderer.strokeColor = UIColor.blueColor()
+            polylineRenderer.strokeColor = UIColor.blue
             polylineRenderer.lineWidth = 5
             return polylineRenderer
         }

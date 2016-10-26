@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71D63C4F52A3C259AD7ED4E8 /* Pods_OpenSidewalks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E19125B0E45131029F59E14 /* Pods_OpenSidewalks.framework */; };
 		891215E61D26D41500940415 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 891215E51D26D41500940415 /* README.md */; };
 		8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8950F3F11D2C242200B45FB3 /* Alamofire.framework */; };
 		895169981D30241300B6E3A9 /* UserLoginScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895169971D30241300B6E3A9 /* UserLoginScene.swift */; };
@@ -30,7 +31,6 @@
 		89CB0C221D4B2B0700D0F8CF /* CrossingRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */; };
 		89CB0C241D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
 		89CB0C251D4BF90900D0F8CF /* PointRecordScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */; };
-		F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GPS_Marker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E19125B0E45131029F59E14 /* Pods_OpenSidewalks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenSidewalks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.debug.xcconfig"; sourceTree = "<group>"; };
 		891215E51D26D41500940415 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		8950F3F11D2C242200B45FB3 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../Library/Developer/Xcode/DerivedData/GPS_Marker-artthatibtsuljfgvgrumutrekec/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -68,6 +69,8 @@
 		89CB0C1D1D4B10E500D0F8CF /* LineStringRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineStringRecordScene.swift; path = Base/LineStringRecordScene.swift; sourceTree = "<group>"; };
 		89CB0C201D4B2B0700D0F8CF /* CrossingRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossingRecordScene.swift; sourceTree = "<group>"; };
 		89CB0C231D4BF90900D0F8CF /* PointRecordScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointRecordScene.swift; path = Base/PointRecordScene.swift; sourceTree = "<group>"; };
+		8DCE07C72E1DEA7191E35172 /* Pods-OpenSidewalks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSidewalks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSidewalks/Pods-OpenSidewalks.debug.xcconfig"; sourceTree = "<group>"; };
+		BF795FDD1A0EE2C0BDEE6B0A /* Pods-OpenSidewalks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSidewalks.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSidewalks/Pods-OpenSidewalks.release.xcconfig"; sourceTree = "<group>"; };
 		F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS Marker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +82,7 @@
 				89CB0C1C1D4AA2E900D0F8CF /* DropDown.framework in Frameworks */,
 				89B102AE1D2C68510057AEC6 /* SwiftyJSON.framework in Frameworks */,
 				8950F3F21D2C242200B45FB3 /* Alamofire.framework in Frameworks */,
-				F7B1BD39EBC1A82C49ED2876 /* Pods_GPS_Marker.framework in Frameworks */,
+				71D63C4F52A3C259AD7ED4E8 /* Pods_OpenSidewalks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +101,8 @@
 			children = (
 				551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */,
 				F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */,
+				8DCE07C72E1DEA7191E35172 /* Pods-OpenSidewalks.debug.xcconfig */,
+				BF795FDD1A0EE2C0BDEE6B0A /* Pods-OpenSidewalks.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 				89B102AD1D2C68510057AEC6 /* SwiftyJSON.framework */,
 				8950F3F11D2C242200B45FB3 /* Alamofire.framework */,
 				1DD034DF1F125CFEC5424939 /* Pods_GPS_Marker.framework */,
+				2E19125B0E45131029F59E14 /* Pods_OpenSidewalks.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -118,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				891215E51D26D41500940415 /* README.md */,
-				89A2BADB1D24347E00661533 /* GPS Marker */,
-				89A2BAF01D24347E00661533 /* GPS MarkerTests */,
+				89A2BADB1D24347E00661533 /* OpenSidewalks */,
+				89A2BAF01D24347E00661533 /* OpenSidewalks Tests */,
 				89A2BADA1D24347E00661533 /* Products */,
 				0F4FD1515073D49E1E2752C3 /* Pods */,
 				79FE172555422B935053D1E7 /* Frameworks */,
@@ -135,7 +141,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		89A2BADB1D24347E00661533 /* GPS Marker */ = {
+		89A2BADB1D24347E00661533 /* OpenSidewalks */ = {
 			isa = PBXGroup;
 			children = (
 				89CB0C181D49DEB600D0F8CF /* Base */,
@@ -150,15 +156,17 @@
 				89A2BAE31D24347E00661533 /* Assets.xcassets */,
 				89A2BAE51D24347E00661533 /* LaunchScreen.storyboard */,
 			);
+			name = OpenSidewalks;
 			path = "GPS Marker";
 			sourceTree = "<group>";
 		};
-		89A2BAF01D24347E00661533 /* GPS MarkerTests */ = {
+		89A2BAF01D24347E00661533 /* OpenSidewalks Tests */ = {
 			isa = PBXGroup;
 			children = (
 				89A2BAF11D24347E00661533 /* GPS_MarkerTests.swift */,
 				89A2BAF31D24347E00661533 /* Info.plist */,
 			);
+			name = "OpenSidewalks Tests";
 			path = "GPS MarkerTests";
 			sourceTree = "<group>";
 		};
@@ -226,9 +234,11 @@
 					89A2BAD81D24347E00661533 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = G8MQVE5WWW;
+						LastSwiftMigration = 0800;
 					};
 					89A2BAEC1D24347E00661533 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 89A2BAD81D24347E00661533;
 					};
 				};
@@ -285,7 +295,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9D91E85F5F766E18ACAA27B2 /* [CP] Copy Pods Resources */ = {
@@ -300,7 +310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenSidewalks/Pods-OpenSidewalks-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E15AA4E765F027AACD96C02F /* [CP] Embed Pods Frameworks */ = {
@@ -315,7 +325,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GPS Marker/Pods-GPS Marker-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenSidewalks/Pods-OpenSidewalks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -470,7 +480,7 @@
 		};
 		89A2BAF71D24347E00661533 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 551C8CA4E6769D4FC607C075 /* Pods-GPS Marker.debug.xcconfig */;
+			baseConfigurationReference = 8DCE07C72E1DEA7191E35172 /* Pods-OpenSidewalks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -486,13 +496,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = OpenSidewalks;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		89A2BAF81D24347E00661533 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3C3E74C23DC0FA47352D953 /* Pods-GPS Marker.release.xcconfig */;
+			baseConfigurationReference = BF795FDD1A0EE2C0BDEE6B0A /* Pods-OpenSidewalks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -508,6 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.uwtcat.GPSContributionApp;
 				PRODUCT_NAME = OpenSidewalks;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -520,6 +532,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
 				PRODUCT_NAME = OpenSidewalks;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenSidewalks.app/OpenSidewalks";
 			};
 			name = Debug;
@@ -532,6 +545,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tcat.GPS-MarkerTests";
 				PRODUCT_NAME = OpenSidewalks;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenSidewalks.app/OpenSidewalks";
 			};
 			name = Release;
