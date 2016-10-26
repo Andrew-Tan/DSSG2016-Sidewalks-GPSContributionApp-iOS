@@ -13,14 +13,14 @@ import SwiftyJSON
 class SidewalkRecordScene: LineStringRecordScene {
     
     // File System
-    override var lineFilePath: String { get { return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json" } }
+    override var lineFilePath: String { get { return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/sidewalk-collection.json" } }
     
     override func viewDidLoad() {
         self.title = "Sidewalk"
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Load GeoJSON file or create a new one
@@ -30,7 +30,7 @@ class SidewalkRecordScene: LineStringRecordScene {
     
     // MARK: -Action
     
-    @IBAction func callDropDown(sender: UIButton) {
+    @IBAction func callDropDown(_ sender: UIButton) {
         var senderTitle = "Unknown"
         
         switch (sender.tag) {

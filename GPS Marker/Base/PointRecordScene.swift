@@ -43,7 +43,7 @@ class PointRecordScene: RecordScene {
         resetAll()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Drop down view
@@ -75,31 +75,31 @@ class PointRecordScene: RecordScene {
             let alertController = UIAlertController(
                 title: "Warning",
                 message: "Current horizontal accuracy is \(point!.horizontalAccuracy) meters, which is not accurate enough, do you want to try again?",
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             
-            let dismissAction = UIAlertAction(title: "No, go on!", style: .Default, handler: { (alert: UIAlertAction!) in
+            let dismissAction = UIAlertAction(title: "No, go on!", style: .default, handler: { (alert: UIAlertAction!) in
                 self.pointDroppedPin = self.dropPinOnMap(self.mapView, locationPoint: self.point!, title: "Curb Ramp")
                 self.afterRecordPointClicked()
             })
             alertController.addAction(dismissAction)
             
-            let retryAction = UIAlertAction(title: "Yes, retry!", style: .Default, handler: nil)
+            let retryAction = UIAlertAction(title: "Yes, retry!", style: .default, handler: nil)
             alertController.addAction(retryAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
     func afterRecordPointClicked() {
         // Adjust button visiblities
-        labelpoint.hidden = false
-        labelpoint.enabled = false
+        labelpoint.isHidden = false
+        labelpoint.isEnabled = false
         
-        cancelButton.hidden = false
-        cancelButton.enabled = true
+        cancelButton.isHidden = false
+        cancelButton.isEnabled = true
         
-        saveButton?.enabled = false
-        saveButton?.enabled = true
+        saveButton?.isEnabled = false
+        saveButton?.isEnabled = true
     }
     
     /**
@@ -132,7 +132,13 @@ class PointRecordScene: RecordScene {
             pointJSONLibrary!["features"] = JSON(pointJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
             
             do {
-                try pointJSONLibrary?.rawData().writeToFile(pointFilePath, atomically: true)
+                // try pointJSONLibrary?.rawData().writeToFile(pointFilePath, atomically: true)
+                // TODO: Check Syntax
+                if let url_path = URL(string: pointFilePath) {
+                    try pointJSONLibrary?.rawData().write(to: url_path)
+                } else {
+                    print("Cannot get url from point path")
+                }
             } catch {
                 saveSuccess = false
             }
@@ -154,11 +160,11 @@ class PointRecordScene: RecordScene {
         resetMap(mapView)
         
         // reset button visibility
-        labelpoint.hidden = false
-        labelpoint.enabled = true
+        labelpoint.isHidden = false
+        labelpoint.isEnabled = true
         
-        cancelButton.hidden = true
-        cancelButton.enabled = false
+        cancelButton.isHidden = true
+        cancelButton.isEnabled = false
         
         // reset all recording variables
         point = nil
@@ -167,18 +173,18 @@ class PointRecordScene: RecordScene {
     
     //MARK:- CLLocationManagerDelegate methods
     
-    override func locationServiceDisabled(manager: CLLocationManager) {
+    override func locationServiceDisabled(_ manager: CLLocationManager) {
         super.locationServiceDisabled(manager)
         
-        labelpoint.enabled = false
-        mapView.userTrackingMode = .None
+        labelpoint.isEnabled = false
+        mapView.userTrackingMode = .none
     }
     
-    override func locationServiceNotDetermined(manager: CLLocationManager) {
+    override func locationServiceNotDetermined(_ manager: CLLocationManager) {
         super.locationServiceNotDetermined(manager)
         
-        labelpoint.enabled = false
-        mapView.userTrackingMode = .None
+        labelpoint.isEnabled = false
+        mapView.userTrackingMode = .none
     }
 }
 

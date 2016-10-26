@@ -27,17 +27,17 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     // Location Service
     let locationManager = CLLocationManager()
     var currentDroppedPin: MKPointAnnotation?
-    var updateTimer: NSTimer!
+    var updateTimer: Timer!
     
     // Activity Indicator
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // GeoJSON file location
-    var fileManager: NSFileManager?
-    let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/sidewalk-collection.json"
-    let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/curbramp-collection.json"
-    let crossingFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/crossing-collection.json"
-    let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
+    var fileManager: FileManager?
+    let sidewalkFilePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/sidewalk-collection.json"
+    let curbrampFilePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/curbramp-collection.json"
+    let crossingFilePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/crossing-collection.json"
+    let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/user-credential.json"
     
     // Network Temprary Server
     let serverURL = "http://52.34.168.220:3000/wines"
@@ -56,9 +56,9 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         
         // Define Buttons on the navigation bar
-        let loginButton = UIBarButtonItem(title: "Login", style: .Plain, target: self, action: #selector(buttonClicked))
+        let loginButton = UIBarButtonItem(title: "Login", style: .plain, target: self, action: #selector(buttonClicked))
         loginButton.tag = 5
-        let uploadButton = UIBarButtonItem(title: "Upload", style: .Plain, target: self, action: #selector(buttonClicked))
+        let uploadButton = UIBarButtonItem(title: "Upload", style: .plain, target: self, action: #selector(buttonClicked))
         uploadButton.tag = 3
         navigationItem.leftBarButtonItem = loginButton
         navigationItem.rightBarButtonItem = uploadButton
@@ -68,15 +68,15 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     /**
      Intiate properties that only need to be done every time when this scene appear
      */
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // Start timer: Update GPS info periodcally
         updateGPSInfo()
-        updateTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(updateGPSInfo), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(updateGPSInfo), userInfo: nil, repeats: true)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         // Stop timer
@@ -100,14 +100,14 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     /**
      Display a message window
      */
-    func displayMessage(title: String, message: String) {
+    func displayMessage(_ title: String, message: String) {
         let alertController = UIAlertController(
             title: title,
             message: message,
-            preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+            preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     /**
@@ -123,10 +123,10 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      100: Remove curb ramp file ONLY
      111: Remove Everything
      */
-    func invalidateCache(displayMsg: Bool, removeMask: Int) {
+    func invalidateCache(_ displayMsg: Bool, removeMask: Int) {
         // Lazy Initialization
         if fileManager == nil {
-            fileManager = NSFileManager()
+            fileManager = FileManager()
         }
         
         var deleteThings = 3
@@ -134,7 +134,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         if removeMask % (10 as Int) != 0 {
             // The last digit of the mask is not 0
             do {
-                try fileManager!.removeItemAtPath(sidewalkFilePath)
+                try fileManager!.removeItem(atPath: sidewalkFilePath)
             } catch {
                 // Deleting error handling
                 deleteThings -= 1
@@ -144,7 +144,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         if removeMask / (10 as Int) != 0 {
             // The first digit of the mask is not 0
             do {
-                try fileManager!.removeItemAtPath(curbrampFilePath)
+                try fileManager!.removeItem(atPath: curbrampFilePath)
             } catch {
                 // Deleting error handling
                 deleteThings -= 1
@@ -154,7 +154,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
         if removeMask / (100 as Int) != 0 {
             // The first digit of the mask is not 0
             do {
-                try fileManager!.removeItemAtPath(crossingFilePath)
+                try fileManager!.removeItem(atPath: crossingFilePath)
             } catch {
                 // Deleting error handling
                 deleteThings -= 1
@@ -176,25 +176,39 @@ class MainView: UIViewController, CLLocationManagerDelegate {
     func uploadData() {
         // Lazy Initialization
         if fileManager == nil {
-            fileManager = NSFileManager()
+            fileManager = FileManager()
         }
         
-        if let header_Data = NSData(contentsOfFile: userCredentialFilePath) {
+        if let header_Data = try? Data(contentsOf: URL(fileURLWithPath: userCredentialFilePath)) {
             let headerJSON = JSON(data: header_Data)
             
             let uploadCollection = ["Sidewalk": sidewalkFilePath, "Curb Ramp": curbrampFilePath, "Crossing": crossingFilePath]
             var errItem: [String] = []
             for (name, path) in uploadCollection {
                 
-                if !(fileManager!.fileExistsAtPath(path)) {
+                if !(fileManager!.fileExists(atPath: path)) {
                     continue
                 }
                 
-                if let path_Data = NSData(contentsOfFile: path) {
+                if let path_Data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                     let path_JSON = addHeader(JSON(data: path_Data), headerJSON: headerJSON)
                     
                     // print("Data to be uploaded \(name):\n \(path_JSON.description)")
+                    if let server_url = URL(string: serverURL) {
+                        Alamofire.request(server_url, method: .post, parameters: path_JSON.dictionaryObject, encoding: JSONEncoding.default, headers: nil)
+                            .validate()
+                            .responseJSON { response in
+                                switch response.result {
+                                case .success:
+                                    print("HTTP Request Success!")
+                                case .failure(let error):
+                                    errItem.append(name)
+                                    NSLog(error.localizedDescription)
+                                }
+                        }
+                    }
                     
+                    /*
                     Alamofire.request(.POST, serverURL, parameters: path_JSON.dictionaryObject, encoding: .JSON)
                         .validate()
                         .responseJSON { response in
@@ -206,6 +220,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
                                 NSLog(error.localizedDescription)
                             }
                     }
+                     */
                 }
             }
             
@@ -219,12 +234,12 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             let alertController = UIAlertController(
                 title: "Credential Error",
                 message: "Please login first",
-                preferredStyle: .Alert)
-            let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+                preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
             alertController.addAction(dismissAction)
-            let loginAction = UIAlertAction(title: "Login", style: .Default, handler: {(alert: UIAlertAction!) in self.performSegueWithIdentifier("LoginSceneSegue", sender: nil)})
+            let loginAction = UIAlertAction(title: "Login", style: .default, handler: {(alert: UIAlertAction!) in self.performSegue(withIdentifier: "LoginSceneSegue", sender: nil)})
             alertController.addAction(loginAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -235,7 +250,7 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      
      - return: the targetJSON with proper device info
      */
-    func addHeader(targetJSON: JSON, headerJSON: JSON) -> JSON {
+    func addHeader(_ targetJSON: JSON, headerJSON: JSON) -> JSON {
         var returnJSON = targetJSON
         returnJSON["properties"]["UserInfo"] = headerJSON
         
@@ -249,19 +264,19 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      
      - parameter sender: the button object who triggered this action
      */
-    @IBAction func buttonClicked(sender: UIButton) {
+    @IBAction func buttonClicked(_ sender: UIButton) {
         switch sender.tag {
         case 0:
             // Sidewalk button get clicked
-            performSegueWithIdentifier("sidewalkSceneSegue", sender: sender)
+            performSegue(withIdentifier: "sidewalkSceneSegue", sender: sender)
             break
         case 1:
             // Curbramp button get clicked
-            performSegueWithIdentifier("curbrampSceneSegue", sender: sender)
+            performSegue(withIdentifier: "curbrampSceneSegue", sender: sender)
             break
         case 2:
             // displayMessage("UNDER DEVELOPMENT", message: "Please check back later :)")
-            performSegueWithIdentifier("crossingSceneSegue", sender: sender)
+            performSegue(withIdentifier: "crossingSceneSegue", sender: sender)
             break
         case 3:
             // Upload Data button get clicked
@@ -276,16 +291,16 @@ class MainView: UIViewController, CLLocationManagerDelegate {
             let alertController = UIAlertController(
                 title: "DELETE CACHE",
                 message: "Are you sure? Unuploaded entries will be deleted!",
-                preferredStyle: .Alert)
-            let dismissAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                preferredStyle: .alert)
+            let dismissAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(dismissAction)
-            let confirmAction = UIAlertAction(title: "DELETE!", style: .Destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 111)})
+            let confirmAction = UIAlertAction(title: "DELETE!", style: .destructive, handler: {(alert: UIAlertAction!) in self.invalidateCache(true, removeMask: 111)})
             alertController.addAction(confirmAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
             break
         case 5:
             // Login button get clicked
-            performSegueWithIdentifier("LoginSceneSegue", sender: sender)
+            performSegue(withIdentifier: "LoginSceneSegue", sender: sender)
         default:
             NSLog("Undefined Caller")
             break
@@ -300,32 +315,32 @@ class MainView: UIViewController, CLLocationManagerDelegate {
      - parameter manager: the CLLocationManager
      - parameter status: the current status of location authorization
      */
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
         switch status {
-        case .AuthorizedAlways, .AuthorizedWhenInUse:
-            buttonStack.hidden = false
-        case .NotDetermined:
-            buttonStack.hidden = true
+        case .authorizedAlways, .authorizedWhenInUse:
+            buttonStack.isHidden = false
+        case .notDetermined:
+            buttonStack.isHidden = true
             manager.requestWhenInUseAuthorization()
-        case .Restricted, .Denied:
-            buttonStack.hidden = true
+        case .restricted, .denied:
+            buttonStack.isHidden = true
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
                 message: "In order to record location information you reported, please open this app's settings and set location access.",
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             alertController.addAction(cancelAction)
             
-            let openAction = UIAlertAction(title: "Open Settings", style: .Default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
-                    UIApplication.sharedApplication().openURL(url)
+            let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
+                if let url = URL(string:UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.openURL(url)
                 }
             }
             alertController.addAction(openAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

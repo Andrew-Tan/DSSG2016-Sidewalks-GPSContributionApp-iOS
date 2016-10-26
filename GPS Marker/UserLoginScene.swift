@@ -11,8 +11,8 @@ import SwiftyJSON
 
 class UserLoginScene: UIViewController, UITextFieldDelegate {
     
-    var fileManager = NSFileManager()
-    let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] + "/user-credential.json"
+    var fileManager = FileManager()
+    let userCredentialFilePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] + "/user-credential.json"
     var userCredentialJSON: JSON?
     
     // MARK:- Properties
@@ -29,14 +29,14 @@ class UserLoginScene: UIViewController, UITextFieldDelegate {
         emailAddress.delegate = self
         
         // Define Save Button on the navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: #selector(saveCredential))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveCredential))
         
         // Set UITextField keyboard type
-        userID.keyboardType = .ASCIICapable
-        emailAddress.keyboardType = .EmailAddress
+        userID.keyboardType = .asciiCapable
+        emailAddress.keyboardType = .emailAddress
         
         // Load User Credential From File & Check if file already exist
-        if let JSON_Data = NSData(contentsOfFile: userCredentialFilePath) {
+        if let JSON_Data = try? Data(contentsOf: URL(fileURLWithPath: userCredentialFilePath)) {
             // File Avaliable, fetch from document
             userCredentialJSON = JSON(data: JSON_Data)
             userID.text = userCredentialJSON!["UserID"].description
@@ -54,14 +54,14 @@ class UserLoginScene: UIViewController, UITextFieldDelegate {
     /**
      Display a message window
      */
-    func displayMessage(title: String, message: String) {
+    func displayMessage(_ title: String, message: String) {
         let alertController = UIAlertController(
             title: title,
             message: message,
-            preferredStyle: .Alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+            preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
         alertController.addAction(dismissAction)
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     // MARK:- Action
@@ -96,7 +96,12 @@ class UserLoginScene: UIViewController, UITextFieldDelegate {
         
         do {
             userCredentialJSON = JSON(credential)
-            try userCredentialJSON!.rawData().writeToFile(userCredentialFilePath, atomically: true)
+            // try userCredentialJSON!.rawData().writeToFile(userCredentialFilePath, atomically: true)
+            if let url_path = URL(string: userCredentialFilePath) {
+                try userCredentialJSON!.rawData().write(to: url_path)
+            } else {
+                print("User credential could not be written!")
+            }
         } catch {
             displayMessage("Save Failed", message: "Unable to Save")
             return
@@ -112,7 +117,7 @@ class UserLoginScene: UIViewController, UITextFieldDelegate {
     /**
      Define action when return is hit while editing a text field
     */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

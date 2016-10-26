@@ -46,7 +46,7 @@ class LineStringRecordScene: RecordScene {
         resetAll()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         dropDown.anchorView = self.dropDownView
@@ -67,7 +67,7 @@ class LineStringRecordScene: RecordScene {
         handleDrawPin(mapView, point: lineStart!, status: "start")
     }
     
-    private func handleDrawPin(mapView: MKMapView, point: CLLocation, status: String) {
+    fileprivate func handleDrawPin(_ mapView: MKMapView, point: CLLocation, status: String) {
         // An annotation is created at the current coordinates with the MKPointAnnotaition class. The annotation is added to the Map View with the addAnnotation method.
         
         if point.horizontalAccuracy < 11 {
@@ -90,9 +90,9 @@ class LineStringRecordScene: RecordScene {
             let alertController = UIAlertController(
                 title: "Warning",
                 message: "Current horizontal accuracy is \(point.horizontalAccuracy) meters, which is not accurate enough, do you want to try again?",
-                preferredStyle: .Alert)
+                preferredStyle: .alert)
             
-            let dismissAction = UIAlertAction(title: "No, go on!", style: .Default, handler: { (alert: UIAlertAction!) in
+            let dismissAction = UIAlertAction(title: "No, go on!", style: .default, handler: { (alert: UIAlertAction!) in
                 if status == "start" {
                     if self.lineStartDroppedPin != nil {
                         mapView.removeAnnotation(self.lineStartDroppedPin!)
@@ -111,25 +111,25 @@ class LineStringRecordScene: RecordScene {
             })
             alertController.addAction(dismissAction)
             
-            let retryAction = UIAlertAction(title: "Yes, retry!", style: .Default, handler: nil)
+            let retryAction = UIAlertAction(title: "Yes, retry!", style: .default, handler: nil)
             alertController.addAction(retryAction)
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
-    private func afterRecordStartClicked() {
+    fileprivate func afterRecordStartClicked() {
         // Adjust button visiblities
-        startButton.hidden = false
-        startButton.enabled = false
+        startButton.isHidden = false
+        startButton.isEnabled = false
         
-        endButton.hidden = false
-        endButton.enabled = true
+        endButton.isHidden = false
+        endButton.isEnabled = true
         
-        cancelButton.hidden = false
-        cancelButton.enabled = true
+        cancelButton.isHidden = false
+        cancelButton.isEnabled = true
         
-        saveButton.enabled = false
+        saveButton.isEnabled = false
     }
     
     /**
@@ -145,9 +145,9 @@ class LineStringRecordScene: RecordScene {
         handleDrawPin(mapView, point: lineEnd!, status: "end")
     }
     
-    private func afterRecordEndClicked() {
+    fileprivate func afterRecordEndClicked() {
         // Stop map user tracking mode
-        mapView.userTrackingMode = .None
+        mapView.userTrackingMode = .none
         mapView.showsUserLocation = false
         
         if lineStart == nil || lineEnd == nil {
@@ -158,21 +158,22 @@ class LineStringRecordScene: RecordScene {
         }
         
         // Draw a line between start and end coordinate
-        var points = [self.lineStart!.coordinate, self.lineEnd!.coordinate]
-        let geodesic = MKGeodesicPolyline(coordinates: &points[0], count:2 )
-        self.mapView.addOverlay(geodesic)
+        // TODO: remember to check back
+        let points = [self.lineStart!.coordinate, self.lineEnd!.coordinate]
+        let geodesic = MKGeodesicPolyline(coordinates: points, count:2 )
+        self.mapView.add(geodesic)
         
         // Adjust button visibilities
-        startButton.hidden = false
-        startButton.enabled = false
+        startButton.isHidden = false
+        startButton.isEnabled = false
         
-        endButton.hidden = false
-        endButton.enabled = false
+        endButton.isHidden = false
+        endButton.isEnabled = false
         
-        cancelButton.hidden = false
-        cancelButton.enabled = true
+        cancelButton.isHidden = false
+        cancelButton.isEnabled = true
         
-        saveButton.enabled = true
+        saveButton.isEnabled = true
     }
     
     /**
@@ -208,16 +209,23 @@ class LineStringRecordScene: RecordScene {
             
             // Construct new entry using recorded information
             let newEntry = [["type": "Feature",
-                "geometry": ["type": "LineString",
-                    "coordinates": [[startCoordinate.longitude, startCoordinate.latitude],
-                                    [endCoordinate.longitude, endCoordinate.latitude]]],
-                "properties": self.savedProperties]]
+                             "geometry": ["type": "LineString",
+                                          "coordinates": [[startCoordinate.longitude, startCoordinate.latitude],
+                                                          [endCoordinate.longitude, endCoordinate.latitude]]],
+                             "properties": self.savedProperties]]
             
             // Concatenate the new entry with old entries
             lineJSONLibrary!["features"] = JSON(lineJSONLibrary!["features"].arrayObject! + JSON(newEntry).arrayObject!)
             
             do {
-                try lineJSONLibrary?.rawData().writeToFile(lineFilePath, atomically: true)
+                // try lineJSONLibrary?.rawData().writeToFile(lineFilePath, atomically: true)
+                
+                // TODO: check syntax
+                if let url_path = URL(string: lineFilePath) {
+                    try lineJSONLibrary?.rawData().write(to: url_path)
+                } else {
+                    print("Cannot get url from line path")
+                }
             } catch {
                 saveSuccess = false
             }
@@ -240,14 +248,14 @@ class LineStringRecordScene: RecordScene {
         resetMap(mapView)
         
         // reset button visibility
-        startButton.hidden = false
-        startButton.enabled = true
+        startButton.isHidden = false
+        startButton.isEnabled = true
         
-        endButton.hidden = true
-        endButton.enabled = false
+        endButton.isHidden = true
+        endButton.isEnabled = false
         
-        cancelButton.hidden = true
-        cancelButton.enabled = false
+        cancelButton.isHidden = true
+        cancelButton.isEnabled = false
         
         // reset all recording variables
         lineStart = nil
@@ -259,20 +267,20 @@ class LineStringRecordScene: RecordScene {
     
     //MARK:- CLLocationManagerDelegate methods
     
-    override func locationServiceDisabled(manager: CLLocationManager) {
+    override func locationServiceDisabled(_ manager: CLLocationManager) {
         super.locationServiceDisabled(manager)
         
-        startButton.enabled = false
-        endButton.enabled = false
-        mapView.userTrackingMode = .None
+        startButton.isEnabled = false
+        endButton.isEnabled = false
+        mapView.userTrackingMode = .none
     }
     
-    override func locationServiceNotDetermined(manager: CLLocationManager) {
+    override func locationServiceNotDetermined(_ manager: CLLocationManager) {
         super.locationServiceDisabled(manager)
         
-        startButton.enabled = false
-        endButton.enabled = false
-        mapView.userTrackingMode = .None
+        startButton.isEnabled = false
+        endButton.isEnabled = false
+        mapView.userTrackingMode = .none
     }
     
 }
